@@ -25,7 +25,7 @@ public class WeightStatsActivity extends AppCompatActivity {
                 new DataPoint(3, 2),
                 new DataPoint(4, 6)};
 
-       // Date date = new Date("15-09-2015");
+        Date date = new Date();
         DataPoint d = new DataPoint(date, 5);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(data);
