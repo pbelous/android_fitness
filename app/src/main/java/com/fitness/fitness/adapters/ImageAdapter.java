@@ -13,11 +13,17 @@ import com.fitness.fitness.R;
 
 public class ImageAdapter extends BaseAdapter {
     private Context context;
-    private final Exercise[] exercises;
+    private Exercise[] exercises;
 
     public ImageAdapter(Context context, Exercise[] exercises) {
         this.context = context;
         this.exercises = exercises;
+    }
+
+    public void setExercises(Exercise[] exercises)
+    {
+        this.exercises = exercises;
+        notifyDataSetChanged();
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {

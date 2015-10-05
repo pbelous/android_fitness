@@ -14,14 +14,16 @@ import java.util.ArrayList;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 1;
+    final static int DB_VER = 2;
     final static String DB_NAME = "todo.db";
     public final String TABLE_NAME = "todo";
 
     final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
             "( _id INTEGER PRIMARY KEY , "+
             " timestamp TEXT , "+
-            " desc TEXT)";
+            " desc TEXT , "+
+            " name TEXT , "+
+            " icon INTEGER)";
     final String DROP_TABLE = "DROP TABLE IF EXISTS "+TABLE_NAME;
     //final String DATA_FILE_NAME = "data.txt";
 

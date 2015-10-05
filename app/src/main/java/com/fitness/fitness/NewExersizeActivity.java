@@ -10,6 +10,7 @@ import android.widget.GridView;
 import android.widget.Spinner;
 
 import com.fitness.fitness.adapters.ImageAdapter;
+import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.Exercise;
 
 import java.util.ArrayList;
@@ -18,10 +19,22 @@ import java.util.List;
 
 public class NewExersizeActivity extends Activity {
 
+    String date = null;
+    ImageAdapter gridViewAdapter = null;
+    Exercise[] exercises = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_exercize_activity);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null)
+            date = bundle.getString("timestamp");
+
+        if (date == null)
+            date = "28-09-2015";
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -34,8 +47,6 @@ public class NewExersizeActivity extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
 
-                // Showing selected spinner item
-                //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                 updateExercisesList(item);
             }
 
@@ -79,34 +90,47 @@ public class NewExersizeActivity extends Activity {
 
     void updateExercisesList(String name)
     {
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-
         switch (name)
         {
             case "Base":
-                gridView.setAdapter(new ImageAdapter(this, Exercise.getExersizes(this, Exercise.EXER_TYPE_BASE)));
+                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_BASE);
                 break;
             case "Arm":
-                gridView.setAdapter(new ImageAdapter(this, Exercise.getExersizes(this, Exercise.EXER_TYPE_ARM)));
+                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_ARM);
                 break;
             case "Leg":
-                gridView.setAdapter(new ImageAdapter(this, Exercise.getExersizes(this, Exercise.EXER_TYPE_LEG)));
+                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_LEG);
                 break;
             default:
-                gridView.setAdapter(new ImageAdapter(this, Exercise.getExersizes(this, Exercise.EXER_TYPE_ALL)));
+                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_ALL);
                 break;
         }
 
-        //gridView.
-        gridView.invalidate();
+        if (gridViewAdapter == null)
+        {
+            GridView gridView = (GridView) findViewById(R.id.gridView);
+            gridViewAdapter = new ImageAdapter(this, exercises);
+            gridView.setAdapter(gridViewAdapter);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View v,
+                                        int position, long id) {
+                    addExerciseToDb(exercises[position]);
+                    finish();
+                }
+            });
+        }
+        else
+        {
+            gridViewAdapter.setExercises(exercises);
+        }
+    }
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                // Toast.makeText(getApplicationContext(),
-                //         ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
+    void addExerciseToDb(Exercise exercise)
+    {
+        Database db = new Database(this);
+
+        db.addRecord(exercise, date);
     }
 
 

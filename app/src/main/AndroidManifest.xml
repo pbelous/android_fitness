@@ -29,10 +29,6 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".NewScheduleActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name=".NewExersizeActivity"
             android:label="@string/app_name" >
         </activity>

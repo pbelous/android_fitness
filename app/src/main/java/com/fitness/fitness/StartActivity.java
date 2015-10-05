@@ -1,5 +1,6 @@
 package com.fitness.fitness;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,7 @@ import android.widget.Button;
 /**
  * Created by pbelous on 01.10.2015.
  */
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

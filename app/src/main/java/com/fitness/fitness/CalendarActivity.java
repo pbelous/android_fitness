@@ -1,5 +1,6 @@
 package com.fitness.fitness;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends Activity {
 
     public GregorianCalendar month, itemmonth;
 
@@ -97,10 +98,10 @@ public class CalendarActivity extends AppCompatActivity {
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
                 //showToast(selectedGridDate);
-                if (db.checkRecords(selectedGridDate))
+                //if (db.checkRecords(selectedGridDate))
                     openScheduleActivity(selectedGridDate);
-                else
-                    openNewScheduleActivity(selectedGridDate);
+                //else
+                //    openNewScheduleActivity(selectedGridDate);
 
             }
         });
@@ -114,13 +115,6 @@ public class CalendarActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void openNewScheduleActivity(String date){
-        Intent intent = new Intent(this, NewScheduleActivity.class);
-
-        intent.putExtra("timestamp", date);
-
-        startActivity(intent);
-    }
 
     protected void setNextMonth() {
         if (month.get(Calendar.MONTH) == month.getActualMaximum(Calendar.MONTH)) {

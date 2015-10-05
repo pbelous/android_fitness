@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fitness.fitness.R;
 
-/**
- * Created by pbelous on 01.10.2015.
- */
 public class ScheduleAdapter extends CursorAdapter {
     public ScheduleAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
@@ -28,11 +26,23 @@ public class ScheduleAdapter extends CursorAdapter {
         // Find fields to populate in inflated template
         TextView tvDate = (TextView) view.findViewById(R.id.textViewDate);
         TextView tvDesc = (TextView) view.findViewById(R.id.textViewDescription);
+        ImageView ivIcon = (ImageView) view.findViewById(R.id.list_image);
         // Extract properties from cursor
         String date = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
         String desc = cursor.getString(cursor.getColumnIndexOrThrow("desc"));
+
+        int res = R.drawable.calendar_cel_set;
+
+        try {
+            res = cursor.getInt(cursor.getColumnIndexOrThrow("icon"));
+        }
+        catch (Exception e)
+        {
+        }
+
         // Populate fields with extracted properties
         tvDate.setText(date);
         tvDesc.setText(desc);
+        ivIcon.setImageResource(res);
     }
 }
