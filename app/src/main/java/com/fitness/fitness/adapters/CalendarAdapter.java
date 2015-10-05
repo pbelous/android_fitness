@@ -23,10 +23,8 @@ public class CalendarAdapter extends BaseAdapter {
     private Context mContext;
 
     private java.util.Calendar month;
-    public GregorianCalendar pmonth; // calendar instance for previous month
-    /**
-     * calendar instance for previous month for getting complete view
-     */
+    public GregorianCalendar pmonth;
+
     public GregorianCalendar pmonthmaxset;
     private GregorianCalendar selectedDate;
     int firstDay;

@@ -1,5 +1,7 @@
 package com.fitness.fitness;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,10 +10,7 @@ import android.widget.EditText;
 
 import com.fitness.fitness.database.Database;
 
-/**
- * Created by pbelous on 01.10.2015.
- */
-public class NewScheduleActivity extends AppCompatActivity {
+public class NewScheduleActivity extends Activity {
 
     Database db = null;
     String date = null;
@@ -24,8 +23,6 @@ public class NewScheduleActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-
-
         if (bundle != null)
             date = bundle.getString("timestamp");
 
@@ -33,6 +30,9 @@ public class NewScheduleActivity extends AppCompatActivity {
             date = "28-09-2015";
 
         Button add = (Button)findViewById(R.id.button_new_schedule);
+        Button cancel = (Button)findViewById(R.id.button_new_cancel);
+        Button add_excersize = (Button)findViewById(R.id.button_add_excersize);
+
         final EditText ETdesc = (EditText)findViewById(R.id.editTextNewSchedule);
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -44,5 +44,25 @@ public class NewScheduleActivity extends AppCompatActivity {
                 }
             }
         });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        add_excersize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewExcersizeActivity();
+            }
+        });
+    }
+
+    void openNewExcersizeActivity()
+    {
+        Intent intent = new Intent(this, NewExersizeActivity.class);
+        startActivity(intent);
     }
 }

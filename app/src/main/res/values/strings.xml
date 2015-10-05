@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_shedule">shedule</string>
+
+    <string name="base">Базовые упражнения</string>
+    <string name="bench_press">Жим лёжа</string>
+    <string name="pull_up">Подтягивания</string>
+    <string name="leg_press">Жим ногами</string>
+    <string name="squat">Приседания</string>
 </resources>
