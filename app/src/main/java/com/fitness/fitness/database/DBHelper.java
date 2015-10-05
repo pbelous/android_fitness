@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 2;
+    final static int DB_VER = 3;
     final static String DB_NAME = "todo.db";
     public final String TABLE_NAME = "todo";
 

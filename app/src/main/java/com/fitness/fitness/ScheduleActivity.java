@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,6 +15,7 @@ public class ScheduleActivity extends Activity {
 
     Database db = null;
     String date = null;
+    ScheduleAdapter csh_adapter = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +31,20 @@ public class ScheduleActivity extends Activity {
         if (date == null)
             date = "28-09-2015";
 
+        ListView listview = (ListView)findViewById(R.id.SchedulelistView);
+
+        Cursor c = db.query(date);
+
+        csh_adapter = new ScheduleAdapter(this, c);
+
+        listview.setAdapter(csh_adapter);
+
+        listview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openExersizeResultActivity();
+            }
+        });
 
 
         Button cancel = (Button)findViewById(R.id.button_new_cancel);
@@ -61,18 +74,22 @@ public class ScheduleActivity extends Activity {
 
     void updateExercisesList()
     {
-        ListView listview = (ListView)findViewById(R.id.SchedulelistView);
-
         Cursor c = db.query(date);
-
-        ScheduleAdapter adapter = new ScheduleAdapter(this, c);
-
-        listview.setAdapter(adapter);
+        csh_adapter.swapCursor(c);
+        csh_adapter.notifyDataSetChanged();
     }
 
     void openNewExcersizeActivity()
     {
         Intent intent = new Intent(this, NewExersizeActivity.class);
+        intent.putExtra("timestamp", date);
+        startActivity(intent);
+    }
+
+    void openExersizeResultActivity()
+    {
+        Intent intent = new Intent(this, ExerciseResultActivity.class);
+       // intent.putExtra("timestamp", date);
         startActivity(intent);
     }
 }

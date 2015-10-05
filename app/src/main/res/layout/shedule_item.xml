@@ -31,7 +31,7 @@
         android:src="@drawable/arrow_right" />
     <!-- City-->
     <TextView
-        android:id="@+id/textViewDate"
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="75dip"
@@ -39,7 +39,7 @@
         android:paddingBottom ="10dip"
         android:text="city"
         android:textColor="#040404"
-        android:textSize="25dip"
+        android:textSize="18dip"
         android:textStyle="bold"
         android:typeface="sans" />
     <!-- Weather Information-->
@@ -47,8 +47,8 @@
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewDate"
-        android:layout_alignLeft="@+id/textViewDate"
+        android:layout_below="@+id/textViewName"
+        android:layout_alignLeft="@+id/textViewName"
         android:paddingTop="5dip"
         android:layout_centerHorizontal="true"
         android:text="cond"

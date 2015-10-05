@@ -21,9 +21,9 @@ public class Database {
 
         DBHelper = new DBHelper(context);
 
-        addRecord("test", "28-09-2015");
-        addRecord("test", "2015-10-01");
-        addRecord("test", "2015-10-15");
+      //  addRecord("test", "28-09-2015");
+      //  addRecord("test", "2015-10-01");
+      //  addRecord("test", "2015-10-15");
     }
 
     public void addRecord(String description, String timestamp)
@@ -42,7 +42,7 @@ public class Database {
         ContentValues values = new ContentValues();
         values.put("timestamp", timestamp);
         values.put("desc", exercise.description);
-        values.put("name", exercise.description);
+        values.put("name", exercise.name);
         values.put("icon", exercise.resource);
 
         DBHelper.getWritableDatabase().insert(DBHelper.TABLE_NAME, null, values);

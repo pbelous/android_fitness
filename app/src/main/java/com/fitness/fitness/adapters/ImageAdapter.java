@@ -51,16 +51,7 @@ public class ImageAdapter extends BaseAdapter {
 
             String mobile = exercises[position].name;
 
-          //  if (mobile.equals("Windows")) {
-                imageView.setImageResource(exercises[position].resource);
-          /*  } else if (mobile.equals("iOS")) {
-                imageView.setImageResource(R.drawable.ios_logo);
-            } else if (mobile.equals("Blackberry")) {
-                imageView.setImageResource(R.drawable.blackberry_logo);
-            } else {
-                imageView.setImageResource(R.drawable.android_logo);
-            } */
-
+            imageView.setImageResource(exercises[position].resource);
         } else {
             gridView = (View) convertView;
         }
