@@ -1,5 +1,6 @@
 package com.fitness.fitness;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,7 +11,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.Date;
 
 
-public class WeightStatsActivity extends AppCompatActivity {
+public class WeightStatsActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class WeightStatsActivity extends AppCompatActivity {
         Date date = new Date();
         DataPoint d = new DataPoint(date, 5);
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(data);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data);
         graph.addSeries(series);
 
         graph.setTitle("title");
