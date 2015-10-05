@@ -30,21 +30,21 @@ public class Exercise {
         switch (type){
             case EXER_TYPE_ALL:
             {
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "test", R.drawable.bench_press_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "bench press", R.drawable.bench_press_64));
                 exercises.add(new Exercise("test", "test", R.drawable.br_64));
                 exercises.add(new Exercise("test", "test", R.drawable.chest_64));
                 exercises.add(new Exercise("test", "test", R.drawable.press2_64));
                 exercises.add(new Exercise("test", "test", R.drawable.pull1_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.pull_up), "test", R.drawable.pull_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.pull_up), "pull up", R.drawable.pull_64));
                 exercises.add(new Exercise(ctx.getResources().getString(R.string.leg_press), "Leg press", R.drawable.push_64));
-                exercises.add(new Exercise("test", "test", R.drawable.run_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "test", R.drawable.squat_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.run), "run", R.drawable.run_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "squat", R.drawable.squat_64));
             }
             break;
             case EXER_TYPE_BASE:
             {
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "test", R.drawable.bench_press_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "test", R.drawable.squat_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "bench press", R.drawable.bench_press_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "squat", R.drawable.squat_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.br_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.chest_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.press2_64));
@@ -56,12 +56,12 @@ public class Exercise {
             break;
             case EXER_TYPE_ARM:
             {
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "test", R.drawable.bench_press_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.bench_press), "bench press", R.drawable.bench_press_64));
                 exercises.add(new Exercise("test", "test", R.drawable.br_64));
                 exercises.add(new Exercise("test", "test", R.drawable.chest_64));
                 exercises.add(new Exercise("test", "test", R.drawable.press2_64));
                 exercises.add(new Exercise("test", "test", R.drawable.pull1_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.pull_up), "test", R.drawable.pull_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.pull_up), "pull up", R.drawable.pull_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.push_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.run_64));
             }
@@ -74,9 +74,9 @@ public class Exercise {
                 //exercises.add(new Exercise("test", "test", R.drawable.press2_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.pull1_64));
                 //exercises.add(new Exercise("test", "test", R.drawable.pull_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.leg_press), "test", R.drawable.push_64));
-                exercises.add(new Exercise("test", "test", R.drawable.run_64));
-                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "test", R.drawable.squat_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.leg_press), "leg press", R.drawable.push_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.run), "run", R.drawable.run_64));
+                exercises.add(new Exercise(ctx.getResources().getString(R.string.squat), "squat", R.drawable.squat_64));
             }
             break;
         }
