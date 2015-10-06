@@ -16,15 +16,26 @@ public class DBHelper extends SQLiteOpenHelper {
 
     final static int DB_VER = 3;
     final static String DB_NAME = "todo.db";
-    public final String TABLE_NAME = "todo";
 
-    final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
+    public final String SCHEDULE_TABLE_NAME = "schedule";
+
+    final String CREATE_SCHEDULE_TABLE = "CREATE TABLE "+SCHEDULE_TABLE_NAME+
             "( _id INTEGER PRIMARY KEY , "+
             " timestamp TEXT , "+
             " desc TEXT , "+
             " name TEXT , "+
             " icon INTEGER)";
-    final String DROP_TABLE = "DROP TABLE IF EXISTS "+TABLE_NAME;
+    final String DROP_SCHEDULE_TABLE = "DROP TABLE IF EXISTS "+SCHEDULE_TABLE_NAME;
+
+    public final String RESULTS_TABLE_NAME = "results";
+
+    final String CREATE_RESULTS_TABLE = "CREATE TABLE "+RESULTS_TABLE_NAME+
+            "( _id INTEGER PRIMARY KEY , "+
+            " timestamp TEXT , "+
+            " result TEXT)";
+    final String DROP_RESULTS_TABLE = "DROP TABLE IF EXISTS "+RESULTS_TABLE_NAME;
+
+
     //final String DATA_FILE_NAME = "data.txt";
 
     Context mContext;
@@ -38,13 +49,15 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DBHelper", "onCreate() called");
-        db.execSQL(CREATE_TABLE);
+        db.execSQL(CREATE_SCHEDULE_TABLE);
+        db.execSQL(CREATE_RESULTS_TABLE);
         //fillData(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_TABLE);
+        db.execSQL(DROP_SCHEDULE_TABLE);
+        db.execSQL(DROP_RESULTS_TABLE);
         onCreate(db);
     }
 
