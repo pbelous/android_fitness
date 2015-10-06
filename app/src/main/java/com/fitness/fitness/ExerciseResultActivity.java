@@ -40,7 +40,7 @@ public class ExerciseResultActivity extends Activity {
         resultsList.setAdapter(adapter);
 
 
-        Button editResultsButton = (Button)findViewById(R.id.buttonEditResults);
+        Button editResultsButton = (Button)findViewById(R.id.button_add);
 
         editResultsButton.setOnClickListener(new View.OnClickListener() {
             @Override

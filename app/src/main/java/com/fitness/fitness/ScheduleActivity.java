@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -15,7 +16,7 @@ public class ScheduleActivity extends Activity {
 
     Database db = null;
     String date = null;
-    ScheduleAdapter csh_adapter = null;
+    ScheduleAdapter adapter = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +36,17 @@ public class ScheduleActivity extends Activity {
 
         Cursor c = db.query(date);
 
-        csh_adapter = new ScheduleAdapter(this, c);
+        adapter = new ScheduleAdapter(this, c);
 
-        listview.setAdapter(csh_adapter);
+        listview.setAdapter(adapter);
 
-        listview.setOnClickListener(new View.OnClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                openExersizeResultActivity();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor cursor = (Cursor) adapter.getItem(position);
+
+
+                openExersizeResultActivity(cursor.getString(cursor.getColumnIndex("timestamp")));
             }
         });
 
@@ -75,8 +79,8 @@ public class ScheduleActivity extends Activity {
     void updateExercisesList()
     {
         Cursor c = db.query(date);
-        csh_adapter.swapCursor(c);
-        csh_adapter.notifyDataSetChanged();
+        adapter.swapCursor(c);
+        adapter.notifyDataSetChanged();
     }
 
     void openNewExcersizeActivity()
@@ -86,10 +90,10 @@ public class ScheduleActivity extends Activity {
         startActivity(intent);
     }
 
-    void openExersizeResultActivity()
+    void openExersizeResultActivity(String timestamp)
     {
         Intent intent = new Intent(this, ExerciseResultActivity.class);
-       // intent.putExtra("timestamp", date);
+        intent.putExtra("timestamp", date);
         startActivity(intent);
     }
 }

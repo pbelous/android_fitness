@@ -145,6 +145,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     public View setSelected(View view, int position) {
         if (previousView != null) {
+            //TODO: fix crash
             if (previousView.getTag() != null
                     && db.checkRecords(dayString.get((Integer) previousView.getTag()))
                     ) {

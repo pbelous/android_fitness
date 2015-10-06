@@ -21,7 +21,7 @@ public class ExerciseResultAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.shedule_item, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.exercise_result_item, parent, false);
     }
 
     @Override
