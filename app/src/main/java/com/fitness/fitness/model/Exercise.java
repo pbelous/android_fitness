@@ -45,7 +45,7 @@ public class Exercise {
             }
             break;
             case EXER_PARALLEL_BAR_DIP: {
-                ex = new Exercise(EXER_PARALLEL_BAR_DIP, "parallel bar dip", "parallel bar dip", R.drawable.br_64);
+                ex = new Exercise(EXER_PARALLEL_BAR_DIP, ctx.getResources().getString(R.string.parallel_bar_dip), "parallel bar dip", R.drawable.br_64);
             }
             break;
             case EXER_STRENGTH_CHEST: {
@@ -103,6 +103,7 @@ public class Exercise {
             {
                 exercises.add(getExersise(ctx, EXER_BENCH_PRESS));
                 exercises.add(getExersise(ctx, EXER_SQUAT));
+                exercises.add(getExersise(ctx, EXER_PULL_UP));
             }
             break;
             case EXER_TYPE_ARM:

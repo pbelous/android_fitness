@@ -11,4 +11,5 @@
     <string name="leg_press">Жим ногами</string>
     <string name="squat">Приседания</string>
     <string name="run">Бег</string>
+    <string name="parallel_bar_dip">Отжимания на брусьях</string>
 </resources>
