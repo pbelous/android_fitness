@@ -93,16 +93,16 @@ public class NewExersizeActivity extends Activity {
         switch (name)
         {
             case "Base":
-                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_BASE);
+                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_BASE);
                 break;
             case "Arm":
-                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_ARM);
+                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_ARM);
                 break;
             case "Leg":
-                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_LEG);
+                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_LEG);
                 break;
             default:
-                exercises =  Exercise.getExersizes(this, Exercise.EXER_TYPE_ALL);
+                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_ALL);
                 break;
         }
 

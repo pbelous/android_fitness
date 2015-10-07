@@ -1,6 +1,7 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class ExerciseResultActivity extends Activity {
     ExerciseResultAdapter adapter = null;
     Database db = null;
     String date = "";
+    int exercise_id = -1;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,19 +27,23 @@ public class ExerciseResultActivity extends Activity {
 
         Bundle bundle = getIntent().getExtras();
 
-        if (bundle != null)
+        if (bundle != null) {
             date = bundle.getString("timestamp");
+            exercise_id = bundle.getInt("id");
+        }
 
         if (date == null)
             date = "";
 
         ListView resultsList = (ListView)findViewById(R.id.listViewExersizeResult);
 
-        Cursor c = db.queryResults(date);
+        Cursor c = db.queryResults(date, exercise_id);
 
         adapter = new ExerciseResultAdapter(this, c);
 
         resultsList.setAdapter(adapter);
+
+        //adapter.se
 
 
         Button editResultsButton = (Button)findViewById(R.id.button_add);
@@ -52,6 +58,9 @@ public class ExerciseResultActivity extends Activity {
 
     void openEditResultsActivity()
     {
-
+        Intent intent = new Intent(this, AddExerciseResultActivity.class);
+        intent.putExtra("timestamp", date);
+        intent.putExtra("id", exercise_id);
+        startActivity(intent);
     }
 }

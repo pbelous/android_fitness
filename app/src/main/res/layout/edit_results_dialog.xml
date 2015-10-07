@@ -32,7 +32,7 @@
             android:background="@drawable/round"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText11" />
+            android:id="@+id/editTextWeight" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,12 +47,12 @@
             android:background="@drawable/round"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText22" />
+            android:id="@+id/editTextReps" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add"
-        android:id="@+id/button2"
+        android:id="@+id/button_add_result"
         android:layout_marginLeft="20dp"
         android:layout_gravity="right" />
 

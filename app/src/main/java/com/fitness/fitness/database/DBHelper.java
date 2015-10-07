@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 4;
+    final static int DB_VER = 5;
     final static String DB_NAME = "todo.db";
 
     public final String SCHEDULE_TABLE_NAME = "schedule";
@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
             " timestamp TEXT , "+
             " desc TEXT , "+
             " name TEXT , "+
+            " exercise_id INTEGER , "+
             " icon INTEGER)";
     final String DROP_SCHEDULE_TABLE = "DROP TABLE IF EXISTS "+SCHEDULE_TABLE_NAME;
 
@@ -32,11 +33,9 @@ public class DBHelper extends SQLiteOpenHelper {
     final String CREATE_RESULTS_TABLE = "CREATE TABLE "+RESULTS_TABLE_NAME+
             "( _id INTEGER PRIMARY KEY , "+
             " timestamp TEXT , "+
+            " exercise_id INTEGER , "+
             " result TEXT)";
     final String DROP_RESULTS_TABLE = "DROP TABLE IF EXISTS "+RESULTS_TABLE_NAME;
-
-
-    //final String DATA_FILE_NAME = "data.txt";
 
     Context mContext;
 

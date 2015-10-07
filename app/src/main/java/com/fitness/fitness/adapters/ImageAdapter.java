@@ -37,19 +37,14 @@ public class ImageAdapter extends BaseAdapter {
 
             gridView = new View(context);
 
-            // get layout from mobile.xml
             gridView = inflater.inflate(R.layout.grid_item, null);
 
-            // set value into textview
             TextView textView = (TextView) gridView
                     .findViewById(R.id.grid_item_label);
             textView.setText(exercises[position].name);
 
-            // set image based on selected text
             ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.grid_item_image);
-
-            String mobile = exercises[position].name;
 
             imageView.setImageResource(exercises[position].resource);
         } else {

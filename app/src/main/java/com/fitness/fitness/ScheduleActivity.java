@@ -45,8 +45,11 @@ public class ScheduleActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) adapter.getItem(position);
 
+                String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
+                int exercise_id = cursor.getInt(cursor.getColumnIndex("exercise_id"));
 
-                openExersizeResultActivity(cursor.getString(cursor.getColumnIndex("timestamp")));
+
+                openExersizeResultActivity(timestamp, exercise_id);
             }
         });
 
@@ -90,10 +93,11 @@ public class ScheduleActivity extends Activity {
         startActivity(intent);
     }
 
-    void openExersizeResultActivity(String timestamp)
+    void openExersizeResultActivity(String timestamp, int exercise_id)
     {
         Intent intent = new Intent(this, ExerciseResultActivity.class);
-        intent.putExtra("timestamp", date);
+        intent.putExtra("timestamp", timestamp);
+        intent.putExtra("id", exercise_id);
         startActivity(intent);
     }
 }

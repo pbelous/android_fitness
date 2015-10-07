@@ -195,6 +195,9 @@ public class CalendarAdapter extends BaseAdapter {
             dayString.add(itemvalue);
 
         }
+
+        //fix
+        previousView = null;
     }
 
     private int getMaxP() {
