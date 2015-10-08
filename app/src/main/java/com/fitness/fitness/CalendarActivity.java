@@ -97,12 +97,7 @@ public class CalendarActivity extends Activity {
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
-                //showToast(selectedGridDate);
-                //if (db.checkRecords(selectedGridDate))
-                    openScheduleActivity(selectedGridDate);
-                //else
-                //    openNewScheduleActivity(selectedGridDate);
-
+                openScheduleActivity(selectedGridDate);
             }
         });
     }

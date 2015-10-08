@@ -12,4 +12,10 @@
     <string name="squat">Приседания</string>
     <string name="run">Бег</string>
     <string name="parallel_bar_dip">Отжимания на брусьях</string>
+    <string name="push_up">Отжимания от пола</string>
+    <string name="seated_lat_pulldown">Тяга верхнего блока на спину сидя</string>
+    <string name="train">Тренировка</string>
+    <string name="calendar">Календарь</string>
+    <string name="exercises">Упражнения</string>
+    <string name="weight">Весы</string>
 </resources>

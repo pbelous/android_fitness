@@ -1,24 +1,12 @@
 package com.fitness.fitness.model;
 
 
+import java.util.ArrayList;
+
 public class ExerciseResult {
-
-    public ExerciseResult(int exercise_id, String date, String resultsString)
-    {
-        this.exercise_id = exercise_id;
-        this.date = date;
-
-        String[] s = resultsString.split("|");
-
-        for (String ss : s)
-        {
-            ExerciseRep r = new ExerciseRep();
-            //repsadd s
-        }
-
-    }
-
-
+    public int exercise_id = -1;
+    public String date = "";
+    public String resultsString = "";
 
     public class ExerciseRep
     {
@@ -26,7 +14,40 @@ public class ExerciseResult {
         public String weight;
     }
 
-    public int exercise_id = -1;
-    public String date;
-    public ExerciseRep[] reps = new ExerciseRep[]{};
+    public ArrayList<ExerciseRep> reps = new ArrayList<ExerciseRep>();
+
+    public ExerciseResult(int exercise_id, String date, String resultsString)
+    {
+        this.exercise_id = exercise_id;
+        this.date = date;
+        this.resultsString = resultsString;
+
+        reloadResultsFromString(resultsString);
+    }
+
+    //format: 20 5\n10 5
+
+    void reloadResultsFromString(String resultsString)
+    {
+        reps.clear();
+
+        String[] results = resultsString.split("\n");
+
+        for (String s : results)
+        {
+            String[] result = s.split(" ");
+            if (result.length == 2) {
+                ExerciseRep r = new ExerciseRep();
+                r.reps = result[0];
+                r.weight = result[1];
+                reps.add(r);
+            }
+        }
+    }
+
+    public void addResult(String weight, String reps)
+    {
+        resultsString  = resultsString + "\n" + weight + " " + reps;
+        reloadResultsFromString(resultsString);
+    }
 }

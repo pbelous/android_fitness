@@ -9,12 +9,9 @@ import android.util.Log;
 import java.io.DataInputStream;
 import java.util.ArrayList;
 
-/**
- * Created by pbelous on 01.10.2015.
- */
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 5;
+    final static int DB_VER = 8;
     final static String DB_NAME = "todo.db";
 
     public final String SCHEDULE_TABLE_NAME = "schedule";

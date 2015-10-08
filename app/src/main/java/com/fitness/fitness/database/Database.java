@@ -4,14 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.fitness.fitness.R;
 import com.fitness.fitness.model.Exercise;
 import com.fitness.fitness.model.ExerciseResult;
 
-/**
- * Created by pbelous on 01.10.2015.
- */
 public class Database {
     private  final Context context;
     private DBHelper DBHelper;
@@ -21,25 +19,7 @@ public class Database {
         context = ctx;
 
         DBHelper = new DBHelper(context);
-
-      //  addRecord("test", "28-09-2015");
-      //  addRecord("test", "2015-10-01");
-      //  addRecord("test", "2015-10-15");
     }
-
-    /*
-    public void addRecord(String description, String timestamp)
-    {
-        ContentValues values = new ContentValues();
-        values.put("timestamp", timestamp);
-        values.put("desc", description);
-        values.put("name", "");
-        values.put("icon", R.drawable.calendar_cel_set);
-        values.put("exercise_id", exercise.exercise_id);
-
-        DBHelper.getWritableDatabase().insert(DBHelper.SCHEDULE_TABLE_NAME, null, values);
-    }
-    */
 
     public void addRecord(Exercise exercise, String timestamp)
     {
@@ -53,17 +33,23 @@ public class Database {
         DBHelper.getWritableDatabase().insert(DBHelper.SCHEDULE_TABLE_NAME, null, values);
     }
 
-    public Cursor queryResults(String timestamp, int exercise_id)
+    public Cursor queryResultsWithDate(String timestamp, int exercise_id)
     {
-        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result FROM " + DBHelper.RESULTS_TABLE_NAME
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
                 + " WHERE timestamp = '" + timestamp + "' and exercise_id = " + exercise_id, null);
     }
 
-    public ExerciseResult queryResult(String timestamp, int exercise_id)
+    public Cursor queryResults(int exercise_id)
+    {
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
+                + " WHERE exercise_id = " + exercise_id, null);
+    }
+
+    public ExerciseResult queryResultWithDate(String timestamp, int exercise_id)
     {
         ExerciseResult result = null;
 
-        Cursor c = (queryResults(timestamp, exercise_id));
+        Cursor c = (queryResultsWithDate(timestamp, exercise_id));
 
         if (c.getCount() > 0)
         {
@@ -74,23 +60,57 @@ public class Database {
         return result;
     }
 
-    public void addResult(String timestamp, String result, int exercise_id)
+    public ExerciseResult queryResult(int exercise_id)
     {
-        ContentValues values = new ContentValues();
-        values.put("timestamp", timestamp);
-        values.put("exercise_id", exercise_id);
-        values.put("result", result);
+        ExerciseResult result = null;
 
-        DBHelper.getWritableDatabase().insertWithOnConflict(DBHelper.RESULTS_TABLE_NAME,
-                "timestamp",
-                values,
-                SQLiteDatabase.CONFLICT_REPLACE);
+        Cursor c = (queryResults(exercise_id));
+
+        if (c.moveToFirst())
+        {
+            Log.i("fff", "queryResult c  OK " +  c.getCount());
+        }
+
+        if (c.getCount() > 0)
+        {
+            c.moveToFirst();
+
+            result = new ExerciseResult(exercise_id, c.getString(c.getColumnIndex("timestamp")), c.getString(c.getColumnIndex("result")));
+        }
+        return result;
     }
 
-    public Cursor query(String timestamp)
+    public void addResult(ExerciseResult result)
     {
-       return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, desc, name, icon FROM " + DBHelper.SCHEDULE_TABLE_NAME
-               + " WHERE timestamp = '" + timestamp + "'", null);
+        ContentValues values = new ContentValues();
+        values.put("timestamp", result.date);
+        values.put("exercise_id", result.exercise_id);
+        values.put("result", result.resultsString);
+
+        int rows = DBHelper.getWritableDatabase().update(DBHelper.RESULTS_TABLE_NAME, values, "timestamp=? and exercise_id=?", new String[] {result.date, String.valueOf(result.exercise_id)} );
+
+        if (rows < 1)
+        {
+            DBHelper.getWritableDatabase().insert(DBHelper.RESULTS_TABLE_NAME, null, values);
+        }
+    }
+
+    public Cursor queryWithDate(String timestamp)
+    {
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, desc, name, exercise_id, icon FROM " + DBHelper.SCHEDULE_TABLE_NAME
+                + " WHERE timestamp = '" + timestamp + "'", null);
+    }
+
+    public Cursor query()
+    {
+        Cursor c = DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, desc, name, exercise_id, icon FROM " +
+                DBHelper.SCHEDULE_TABLE_NAME, null);
+        if (c.moveToFirst())
+        {
+            Log.i("fff", "query c  OK " +  c.getCount());
+        }
+
+        return c;
     }
 
     public boolean checkRecords(String timestamp)
@@ -106,9 +126,5 @@ public class Database {
         if(DBHelper != null){
             DBHelper.close();
         }
-        //if (c != null) {
-        //    c.close();
-        //    c = null;
-        //}
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import com.fitness.fitness.adapters.ImageAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.Exercise;
+import com.fitness.fitness.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class NewExersizeActivity extends Activity {
             date = bundle.getString("timestamp");
 
         if (date == null)
-            date = "28-09-2015";
+            date = Utils.getCurrentDate();
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);

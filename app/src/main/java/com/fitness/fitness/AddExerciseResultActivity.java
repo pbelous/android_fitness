@@ -11,13 +11,15 @@ import android.widget.ListView;
 import com.fitness.fitness.adapters.EditExerciseResultAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.ExerciseResult;
+import com.fitness.fitness.utils.Utils;
 
 public class AddExerciseResultActivity extends Activity {
 
     Database db = null;
-    String date = "";
+
     int exercise_id = -1;
     EditExerciseResultAdapter adapter = null;
+    ExerciseResult exerciseResult = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +29,25 @@ public class AddExerciseResultActivity extends Activity {
 
         Bundle bundle = getIntent().getExtras();
 
+        String date = null;
+
         if (bundle != null) {
             date = bundle.getString("timestamp");
             exercise_id = bundle.getInt("id");
         }
 
-        if (date == null)
-            date = "";
+        if (date != null) {
+            exerciseResult = db.queryResultWithDate(date, exercise_id);
+        }
 
-        ExerciseResult exerciseResult = db.queryResult(date, exercise_id);
+        if (exerciseResult == null)
+        {
+            exerciseResult = new ExerciseResult(exercise_id, Utils.getCurrentDate(), "");
+        }
 
-        ListView listView = (ListView)findViewById(R.id.listViewExersizeResult);
+        adapter = new EditExerciseResultAdapter(this, exerciseResult);
+
+        ListView listView = (ListView)findViewById(R.id.listViewEditResults);
 
         listView.setAdapter(adapter);
 
@@ -52,15 +62,12 @@ public class AddExerciseResultActivity extends Activity {
                 String weight = et_weights.getText().toString();
                 String reps = et_reps.getText().toString();
 
-                String timestamp = "";
-                String result = "";
-
-
-                db.addResult(timestamp, result, 4);
+                exerciseResult.addResult(weight, reps);
+                adapter.notifyDataSetChanged();
+                db.addResult(exerciseResult);
             }
         });
 
-
-        ListView lv_results = (ListView)findViewById(R.id.listViewExersizeResult);
+        //ListView lv_results = (ListView)findViewById(R.id.listViewExersizeResult);
     }
 }

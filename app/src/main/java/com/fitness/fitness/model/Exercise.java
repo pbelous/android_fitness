@@ -53,11 +53,11 @@ public class Exercise {
             }
             break;
             case EXER_PUSH_UP: {
-                ex = new Exercise(EXER_PUSH_UP, "push up", "push up", R.drawable.press2_64);
+                ex = new Exercise(EXER_PUSH_UP, ctx.getResources().getString(R.string.push_up), "push up", R.drawable.press2_64);
             }
             break;
             case EXER_SEATED_LAT_PULLDOWN: {
-                ex =  new Exercise(EXER_SEATED_LAT_PULLDOWN, "SEATED_LAT_PULLDOWN", "SEATED_LAT_PULLDOWN", R.drawable.pull1_64);
+                ex =  new Exercise(EXER_SEATED_LAT_PULLDOWN, ctx.getResources().getString(R.string.seated_lat_pulldown), "SEATED_LAT_PULLDOWN", R.drawable.pull1_64);
             }
             break;
             case EXER_PULL_UP: {

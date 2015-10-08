@@ -5,16 +5,17 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fitness.fitness.R;
 
-/**
- * Created by pbelous on 05.10.2015.
- */
 public class ExerciseResultAdapter extends CursorAdapter {
+    private View.OnClickListener listener = null;
+
+
     public ExerciseResultAdapter(Context context, Cursor cursor){
         super(context, cursor, 0);
     }
@@ -24,30 +25,34 @@ public class ExerciseResultAdapter extends CursorAdapter {
         return LayoutInflater.from(context).inflate(R.layout.exercise_result_item, parent, false);
     }
 
+    public void setOnClickListener(View.OnClickListener listener)
+    {
+        this.listener = listener;
+    }
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Find fields to populate in inflated template
-       /* TextView tvName = (TextView) view.findViewById(R.id.textViewName);
-        TextView tvDesc = (TextView) view.findViewById(R.id.textViewDescription);
-        ImageView ivIcon = (ImageView) view.findViewById(R.id.list_image);
-        // Extract properties from cursor
+        TextView tvDate = (TextView) view.findViewById(R.id.textViewResultsDate);
+        TextView tvResults = (TextView) view.findViewById(R.id.textViewResults);
+        Button editButton = (Button) view.findViewById(R.id.buttonEditResults);
+
+        int exercise_id = cursor.getInt(cursor.getColumnIndexOrThrow("exercise_id"));
+
         String date = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
-        String desc = cursor.getString(cursor.getColumnIndexOrThrow("desc"));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        String results = cursor.getString(cursor.getColumnIndexOrThrow("result"));
 
-        int res = R.drawable.calendar_cel_set;
+        tvDate.setText(date);
+        tvResults.setText(results);
 
-        try {
-            res = cursor.getInt(cursor.getColumnIndexOrThrow("icon"));
-        }
-        catch (Exception e)
-        {
-        }
+        editButton.setTag(date);
 
-        // Populate fields with extracted properties
-        tvName.setText(name);
-        tvDesc.setText(desc);
-        ivIcon.setImageResource(res);
-        */
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onClick(v);
+                }
+            }
+        });
     }
 }

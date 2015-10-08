@@ -29,12 +29,18 @@ public class ScheduleActivity extends Activity {
         if (bundle != null)
          date = bundle.getString("timestamp");
 
-        if (date == null)
-            date = "28-09-2015";
-
         ListView listview = (ListView)findViewById(R.id.SchedulelistView);
 
-        Cursor c = db.query(date);
+        Cursor c = null;
+
+        if (date != null)
+        {
+            c = db.queryWithDate(date);
+        }
+        else
+        {
+            c = db.query();
+        }
 
         adapter = new ScheduleAdapter(this, c);
 
@@ -44,18 +50,19 @@ public class ScheduleActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) adapter.getItem(position);
+                //cursor.moveToPosition(position);
 
                 String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
                 int exercise_id = cursor.getInt(cursor.getColumnIndex("exercise_id"));
 
 
-                openExersizeResultActivity(timestamp, exercise_id);
+                openExerciseResultActivity(timestamp, exercise_id);
             }
         });
 
 
         Button cancel = (Button)findViewById(R.id.button_new_cancel);
-        Button add_excersize = (Button)findViewById(R.id.button_add_excersize);
+        Button add_exercise = (Button)findViewById(R.id.button_add_excersize);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +71,10 @@ public class ScheduleActivity extends Activity {
             }
         });
 
-        add_excersize.setOnClickListener(new View.OnClickListener() {
+        add_exercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewExcersizeActivity();
+                openNewExerciseActivity();
             }
         });
     }
@@ -81,19 +88,25 @@ public class ScheduleActivity extends Activity {
 
     void updateExercisesList()
     {
-        Cursor c = db.query(date);
+        Cursor c = null;
+
+        if (date != null)
+        c = db.queryWithDate(date);
+        else
+        c= db.query();
+
         adapter.swapCursor(c);
         adapter.notifyDataSetChanged();
     }
 
-    void openNewExcersizeActivity()
+    void openNewExerciseActivity()
     {
         Intent intent = new Intent(this, NewExersizeActivity.class);
         intent.putExtra("timestamp", date);
         startActivity(intent);
     }
 
-    void openExersizeResultActivity(String timestamp, int exercise_id)
+    void openExerciseResultActivity(String timestamp, int exercise_id)
     {
         Intent intent = new Intent(this, ExerciseResultActivity.class);
         intent.putExtra("timestamp", timestamp);
