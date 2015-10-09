@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.fitness.fitness.utils.Utils;
+
 public class StartActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
@@ -15,6 +17,7 @@ public class StartActivity extends Activity {
         Button calendar_button = (Button)findViewById(R.id.button_calendar);
         Button weight_button = (Button)findViewById(R.id.button_weight);
         Button schedule_button = (Button)findViewById(R.id.button_schedule);
+        Button traing_button = (Button)findViewById(R.id.button_schedule_today);
 
         weight_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +37,13 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View v) {
                 openScheduleActivity();
+            }
+        });
+
+        traing_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTrainActivity();
             }
         });
 
@@ -57,4 +67,10 @@ public class StartActivity extends Activity {
         startActivity(intent);
     }
 
+    void openTrainActivity()
+    {
+        Intent intent = new Intent(this, ScheduleActivity.class);
+        intent.putExtra("timestamp", Utils.getCurrentDate());
+        startActivity(intent);
+    }
 }
