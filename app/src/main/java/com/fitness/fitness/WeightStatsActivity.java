@@ -1,6 +1,7 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.jjoe64.graphview.GraphView;
@@ -27,6 +28,10 @@ public class WeightStatsActivity extends Activity {
 
         Date date = new Date();
         DataPoint d = new DataPoint(date, 5);
+
+        Cursor c = null;
+
+      //  LineGraphSeries<DataPoint> series = new LineGraphSeries<>(c);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data);
         graph.addSeries(series);

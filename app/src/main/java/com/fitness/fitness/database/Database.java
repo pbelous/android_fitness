@@ -121,6 +121,36 @@ public class Database {
         //TODO: close cursor
     }
 
+    //----------------
+
+    public Cursor queryAllWeight()
+    {
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, weight FROM " + DBHelper.WEIGHT_TABLE_NAME, null);
+    }
+
+
+    public Cursor queryWeighWithDates(String timeFrom, String timeTo)
+    {
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, weight FROM " + DBHelper.WEIGHT_TABLE_NAME
+                + " WHERE timestamp = '" + timeFrom + "'", null);
+    }
+
+    public void addWeight(String timestamp, float weight)
+    {
+        ContentValues values = new ContentValues();
+        values.put("timestamp", timestamp);
+        values.put("weight", weight);
+
+        int rows = DBHelper.getWritableDatabase().update(DBHelper.WEIGHT_TABLE_NAME, values, "timestamp=?", new String[] {timestamp} );
+
+        if (rows < 1)
+        {
+            DBHelper.getWritableDatabase().insert(DBHelper.WEIGHT_TABLE_NAME, null, values);
+        }
+    }
+
+    //-------------------
+
     //Close Data Base
     public void closeDBHelper(){
         if(DBHelper != null){
