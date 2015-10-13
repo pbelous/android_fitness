@@ -113,6 +113,11 @@ public class Database {
         return c;
     }
 
+    public void deleteSchedule(String timestamp, int exercise_id)
+    {
+        DBHelper.getWritableDatabase().delete(DBHelper.SCHEDULE_TABLE_NAME, "timestamp=? and exercise_id=?", new String[] {timestamp, String.valueOf(exercise_id)});
+    }
+
     public boolean checkRecords(String timestamp)
     {
        Cursor c =  DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp FROM " + DBHelper.SCHEDULE_TABLE_NAME
