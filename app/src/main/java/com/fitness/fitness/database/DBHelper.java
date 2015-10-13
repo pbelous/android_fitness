@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 8;
+    final static int DB_VER = 9;
     final static String DB_NAME = "todo.db";
 
     //---------------------------------------------------
@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //----------------------------------------------------
 
-    public final String WEIGHT_TABLE_NAME = "results";
+    public final String WEIGHT_TABLE_NAME = "weight";
 
     final String CREATE_WEIGHT_TABLE = "CREATE TABLE "+WEIGHT_TABLE_NAME+
             "( _id INTEGER PRIMARY KEY , "+
