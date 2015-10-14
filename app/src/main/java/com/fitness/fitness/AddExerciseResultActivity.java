@@ -67,7 +67,5 @@ public class AddExerciseResultActivity extends Activity {
                 db.addResult(exerciseResult);
             }
         });
-
-        //ListView lv_results = (ListView)findViewById(R.id.listViewExersizeResult);
     }
 }
