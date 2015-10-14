@@ -1,9 +1,12 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -12,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 
 import com.fitness.fitness.adapters.ScheduleAdapter;
 import com.fitness.fitness.database.Database;
+import com.fitness.fitness.dialogs.DatePickerFragment;
 
-public class ScheduleActivity extends Activity {
+public class ScheduleActivity extends FragmentActivity {
 
     Database db = null;
     String date = null;
@@ -66,6 +71,7 @@ public class ScheduleActivity extends Activity {
         });
 
         registerForContextMenu(listview);
+
     //    listview.setOnItemClickListener(this);
 
         /*
@@ -112,14 +118,14 @@ public class ScheduleActivity extends Activity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v.getId() == R.id.SchedulelistView) {
-            ListView lv = (ListView) v;
+
+          //  ListView lv = (ListView) v;
           //  AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
         //    YourObject obj = (YourObject) lv.getItemAtPosition(acmi.position);
 
+            menu.add("Copy");
+            menu.add("Move");
             menu.add("Delete");
-            //menu.add("Two");
-            //menu.add("Three");
-           // menu.add(obj.name);
         }
     }
 
@@ -135,18 +141,44 @@ public class ScheduleActivity extends Activity {
         updateExercisesList();
     }
 
+    void moveSchedule(int position, String newdate)
+    {
+        Cursor cursor = (Cursor) adapter.getItem(position);
+
+        String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
+        int exercise_id = cursor.getInt(cursor.getColumnIndex("exercise_id"));
+
+        db.moveSchedule(timestamp, newdate, exercise_id);
+
+        updateExercisesList();
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        final int position = info.position;
+
         if (item.getTitle().equals("Delete"))
         {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-            deleteSchedule(info.position);
-
-                //Log.d(TAG, "removing item pos=" + info.position);
-                //mAdapter.remove(info.position);
+            deleteSchedule(position);
             return true;
+        }
+        else if (item.getTitle().equals("Move"))
+        {
+            DatePickerFragment newFragment = new DatePickerFragment();
 
+            //DatePickerFragment.s
+
+            newFragment.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    moveSchedule(position, year + "-" + monthOfYear + "-" + dayOfMonth);
+                }
+            });
+
+            newFragment.show(getSupportFragmentManager(), "datePicker");
+
+            //DatePickerFragment
         }
 
         return super.onContextItemSelected(item);

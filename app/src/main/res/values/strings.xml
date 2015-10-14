@@ -18,4 +18,11 @@
     <string name="calendar">Календарь</string>
     <string name="exercises">Упражнения</string>
     <string name="weight">Весы</string>
+
+    <string name="category_all">Все категории</string>
+    <string name="category_base">Базовые упражнения</string>
+    <string name="category_arm">Руки</string>
+    <string name="category_leg">Ноги</string>
+    <string name="category_chest">Грудь</string>
+    <string name="category_shoulder">Плечи</string>
 </resources>

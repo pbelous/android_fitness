@@ -120,6 +120,12 @@ public class Database {
         DBHelper.getWritableDatabase().delete(DBHelper.SCHEDULE_TABLE_NAME, "timestamp=? and exercise_id=?", new String[] {timestamp, String.valueOf(exercise_id)});
     }
 
+    public void moveSchedule(String timestamp, String newdate, int exercise_id)
+    {
+        //DBHelper.getWritableDatabase().delete(DBHelper.SCHEDULE_TABLE_NAME, "timestamp=? and exercise_id=?", new String[] {timestamp, String.valueOf(exercise_id)});
+        Log.i("h", "moveeee to" + newdate);
+    }
+
     public boolean checkRecords(String timestamp)
     {
        Cursor c =  DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp FROM " + DBHelper.SCHEDULE_TABLE_NAME

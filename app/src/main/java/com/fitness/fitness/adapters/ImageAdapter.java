@@ -14,10 +14,12 @@ import com.fitness.fitness.R;
 public class ImageAdapter extends BaseAdapter {
     private Context context;
     private Exercise[] exercises;
+    private LayoutInflater inflater;
 
     public ImageAdapter(Context context, Exercise[] exercises) {
         this.context = context;
         this.exercises = exercises;
+        inflater = LayoutInflater.from(this.context);
     }
 
     public void setExercises(Exercise[] exercises)
@@ -27,10 +29,6 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View gridView;
 
         if (convertView == null) {

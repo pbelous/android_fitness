@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
 
+import com.fitness.fitness.adapters.CategoryAdapter;
 import com.fitness.fitness.adapters.ImageAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.Exercise;
@@ -23,6 +24,15 @@ public class NewExersizeActivity extends Activity {
     String date = null;
     ImageAdapter gridViewAdapter = null;
     Exercise[] exercises = null;
+
+    Integer[] categories = new Integer[] {
+            R.string.category_all,
+            R.string.category_base,
+            R.string.category_arm,
+            R.string.category_leg,
+            R.string.category_chest,
+            R.string.category_shoulder
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +50,11 @@ public class NewExersizeActivity extends Activity {
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-
-
         // Spinner click listener
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-
-                updateExercisesList(item);
+                updateExercisesList(position);
             }
 
             @Override
@@ -57,6 +63,8 @@ public class NewExersizeActivity extends Activity {
             }
         });
 
+
+        /*
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("All");
@@ -69,12 +77,16 @@ public class NewExersizeActivity extends Activity {
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+*/
+
+        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_spinner_item, categories);
+
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        spinner.setAdapter(adapter);
 
 
         Button cancel = (Button)findViewById(R.id.button_new_excersize_cancel);
@@ -89,17 +101,19 @@ public class NewExersizeActivity extends Activity {
 
     }
 
-    void updateExercisesList(String name)
+    void updateExercisesList(Integer position)
     {
-        switch (name)
+        Integer category = categories[position];
+
+        switch (category)
         {
-            case "Base":
+            case R.string.category_base:
                 exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_BASE);
                 break;
-            case "Arm":
+            case R.string.category_arm:
                 exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_ARM);
                 break;
-            case "Leg":
+            case R.string.category_leg:
                 exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_LEG);
                 break;
             default:
