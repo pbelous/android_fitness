@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewExersizeActivity extends Activity {
+public class NewExerciseActivity extends Activity {
 
     String date = null;
     ImageAdapter gridViewAdapter = null;
