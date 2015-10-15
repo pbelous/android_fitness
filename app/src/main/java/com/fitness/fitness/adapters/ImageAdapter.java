@@ -29,25 +29,19 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View gridView;
+        View gridView = null;
 
         if (convertView == null) {
-
-            gridView = new View(context);
-
             gridView = inflater.inflate(R.layout.grid_item, null);
-
-            TextView textView = (TextView) gridView
-                    .findViewById(R.id.grid_item_label);
-            textView.setText(exercises[position].name);
-
-            ImageView imageView = (ImageView) gridView
-                    .findViewById(R.id.grid_item_image);
-
-            imageView.setImageResource(exercises[position].resource);
         } else {
             gridView = (View) convertView;
         }
+
+        TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
+        ImageView imageView = (ImageView) gridView.findViewById(R.id.grid_item_image);
+
+        textView.setText(exercises[position].name);
+        imageView.setImageResource(exercises[position].resource);
 
         return gridView;
     }
