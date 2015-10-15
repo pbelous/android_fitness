@@ -26,21 +26,6 @@ public class EditExerciseResultAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(this.context);
     }
 
-    /*
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View view = LayoutInflater.from(context).inflate(R.layout.exercise_result_item, parent, false);
-
-        TextView tv = (TextView)view.findViewById(R.id.textView); //fix
-
-
-        return view;
-    }
-    */
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         MyViewHolder mViewHolder;

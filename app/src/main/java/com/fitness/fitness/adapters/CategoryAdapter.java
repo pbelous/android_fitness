@@ -45,19 +45,10 @@ public class CategoryAdapter extends ArrayAdapter<Integer> {
 
         label.setText(name);
 
-        icon.setImageResource(R.drawable.arm_icon);
-
-
-        /*
-        label.setText(DayOfWeek[position]);
-
-        if (DayOfWeek[position]=="Sunday"){
-            icon.setImageResource(R.drawable.icon);
-        }
-        else{
-            icon.setImageResource(R.drawable.icongray);
-        }
-        */
+        if (position % 2 == 0)
+            icon.setImageResource(R.drawable.arm_icon);
+        else
+            icon.setImageResource(R.drawable.leg);
 
         return row;
     }

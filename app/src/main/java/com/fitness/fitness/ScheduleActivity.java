@@ -28,6 +28,11 @@ public class ScheduleActivity extends FragmentActivity {
     String date = null;
     ScheduleAdapter adapter = null;
 
+    private static final int MENU_ID_MOVE=Menu.FIRST+1;
+    private static final int MENU_ID_COPY=Menu.FIRST+2;
+    private static final int MENU_ID_DELETE=Menu.FIRST+3;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_activity);
@@ -72,31 +77,6 @@ public class ScheduleActivity extends FragmentActivity {
 
         registerForContextMenu(listview);
 
-    //    listview.setOnItemClickListener(this);
-
-        /*
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
-
-
-
-                Cursor cursor = (Cursor) adapter.getItem(position);
-
-                String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
-                int exercise_id = cursor.getInt(cursor.getColumnIndex("exercise_id"));
-
-                db.deleteSchedule(timestamp, exercise_id);
-
-                return true;
-            }
-        });
-
-        this.openContextMenu();
-        */
-
-
         Button cancel = (Button)findViewById(R.id.button_new_cancel);
         Button add_exercise = (Button)findViewById(R.id.button_add_excersize);
 
@@ -118,14 +98,9 @@ public class ScheduleActivity extends FragmentActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v.getId() == R.id.SchedulelistView) {
-
-          //  ListView lv = (ListView) v;
-          //  AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        //    YourObject obj = (YourObject) lv.getItemAtPosition(acmi.position);
-
-            menu.add("Copy");
-            menu.add("Move");
-            menu.add("Delete");
+            menu.add(0, MENU_ID_COPY, 0, getResources().getString(R.string.copy));
+            menu.add(0, MENU_ID_MOVE, 0, getResources().getString(R.string.move));
+            menu.add(0, MENU_ID_DELETE, 0, getResources().getString(R.string.delete));
         }
     }
 
@@ -158,16 +133,14 @@ public class ScheduleActivity extends FragmentActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int position = info.position;
 
-        if (item.getTitle().equals("Delete"))
+        if (item.getItemId() == MENU_ID_DELETE)
         {
             deleteSchedule(position);
             return true;
         }
-        else if (item.getTitle().equals("Move"))
+        else if (item.getItemId() == MENU_ID_MOVE)
         {
             DatePickerFragment newFragment = new DatePickerFragment();
-
-            //DatePickerFragment.s
 
             newFragment.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -177,8 +150,6 @@ public class ScheduleActivity extends FragmentActivity {
             });
 
             newFragment.show(getSupportFragmentManager(), "datePicker");
-
-            //DatePickerFragment
         }
 
         return super.onContextItemSelected(item);

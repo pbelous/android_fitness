@@ -16,6 +16,8 @@ public class Exercise {
     public static final int EXER_TYPE_BASE = 1;
     public static final int EXER_TYPE_ARM = 2;
     public static final int EXER_TYPE_LEG = 3;
+    public static final int EXER_TYPE_CHEST = 4;
+    public static final int EXER_TYPE_SHOULDER = 5;
 
     public static final int EXER_BENCH_PRESS = 0;
     public static final int EXER_PARALLEL_BAR_DIP = 1;
@@ -81,7 +83,7 @@ public class Exercise {
         return ex;
     }
 
-    public static Exercise[] getExersises(Context ctx, int type)
+    public static Exercise[] getExercises(Context ctx, int type)
     {
         ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 
@@ -121,6 +123,32 @@ public class Exercise {
                 exercises.add(getExersise(ctx, EXER_LEG_PRESS));
                 exercises.add(getExersise(ctx, EXER_RUN));
                 exercises.add(getExersise(ctx, EXER_SQUAT));
+            }
+            break;
+            case EXER_TYPE_CHEST:
+            {
+                exercises.add(getExersise(ctx, EXER_BENCH_PRESS));
+                exercises.add(getExersise(ctx, EXER_PARALLEL_BAR_DIP));
+                exercises.add(getExersise(ctx, EXER_STRENGTH_CHEST));
+                //exercises.add(getExersise(ctx, EXER_PUSH_UP));
+                //exercises.add(getExersise(ctx, EXER_SEATED_LAT_PULLDOWN));
+                exercises.add(getExersise(ctx, EXER_PULL_UP));
+                //exercises.add(getExersise(ctx, EXER_LEG_PRESS));
+                //exercises.add(getExersise(ctx, EXER_RUN));
+                //exercises.add(getExersise(ctx, EXER_SQUAT));
+            }
+            break;
+            case EXER_TYPE_SHOULDER:
+            {
+                //exercises.add(getExersise(ctx, EXER_BENCH_PRESS));
+                exercises.add(getExersise(ctx, EXER_PARALLEL_BAR_DIP));
+                //exercises.add(getExersise(ctx, EXER_STRENGTH_CHEST));
+                //exercises.add(getExersise(ctx, EXER_PUSH_UP));
+                //exercises.add(getExersise(ctx, EXER_SEATED_LAT_PULLDOWN));
+                //exercises.add(getExersise(ctx, EXER_PULL_UP));
+                //exercises.add(getExersise(ctx, EXER_LEG_PRESS));
+                //exercises.add(getExersise(ctx, EXER_RUN));
+                //exercises.add(getExersise(ctx, EXER_SQUAT));
             }
             break;
         }

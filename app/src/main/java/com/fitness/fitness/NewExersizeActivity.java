@@ -63,42 +63,18 @@ public class NewExersizeActivity extends Activity {
             }
         });
 
-
-        /*
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("All");
-        categories.add("Base");
-        categories.add("Arm");
-        categories.add("Leg");
-        //categories.add("Back");
-        //categories.add("Chest");
-        //categories.add("Press");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-*/
-
         CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_spinner_item, categories);
 
-
-        // Drop down layout style - list view with radio button
-        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
         spinner.setAdapter(adapter);
 
 
         Button cancel = (Button)findViewById(R.id.button_new_excersize_cancel);
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-
     }
 
     void updateExercisesList(Integer position)
@@ -108,16 +84,22 @@ public class NewExersizeActivity extends Activity {
         switch (category)
         {
             case R.string.category_base:
-                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_BASE);
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_BASE);
                 break;
             case R.string.category_arm:
-                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_ARM);
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_ARM);
                 break;
             case R.string.category_leg:
-                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_LEG);
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_LEG);
+                break;
+            case R.string.category_chest:
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_CHEST);
+                break;
+            case R.string.category_shoulder:
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_SHOULDER);
                 break;
             default:
-                exercises =  Exercise.getExersises(this, Exercise.EXER_TYPE_ALL);
+                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_ALL);
                 break;
         }
 
