@@ -58,7 +58,7 @@ public class ExerciseInfoActivity extends Activity {
 
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/test.html");
+        tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_1.html");
     }
 
 
