@@ -3,6 +3,7 @@ package com.fitness.fitness.utils;
 import android.util.Log;
 
 import com.fitness.fitness.model.ExerciseInfo;
+import com.fitness.fitness.model.ExerciseInfoRecord;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -16,8 +17,8 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by pbelous on 15.10.2015.
  */
 public class ExerciseParser {
-    public static List<ExerciseInfo> parse(InputStream is) {
-        List<ExerciseInfo> info = null;
+    public static List<ExerciseInfoRecord> parse(InputStream is) {
+        List<ExerciseInfoRecord> info = null;
         try {
             XMLReader xmlReader = SAXParserFactory.newInstance().newSAXParser()
                     .getXMLReader();

@@ -1,6 +1,7 @@
 package com.fitness.fitness.utils;
 
 import com.fitness.fitness.model.ExerciseInfo;
+import com.fitness.fitness.model.ExerciseInfoRecord;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -11,15 +12,15 @@ import java.util.List;
 
 public class ExerciseParserSaxHandler extends DefaultHandler {
 
-    private List<ExerciseInfo> info;
+    private List<ExerciseInfoRecord> info;
     private String tempVal;
-    private ExerciseInfo tempEmp;
+    private ExerciseInfoRecord tempEmp;
 
     public ExerciseParserSaxHandler() {
-        info = new ArrayList<ExerciseInfo>();
+        info = new ArrayList<ExerciseInfoRecord>();
     }
 
-    public List<ExerciseInfo> getExerciseInfo() {
+    public List<ExerciseInfoRecord> getExerciseInfo() {
         return info;
     }
 
@@ -29,7 +30,7 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
         tempVal = "";
         if (qName.equalsIgnoreCase("exercise")) {
             // create a new instance of employee
-            tempEmp = new ExerciseInfo();
+            tempEmp = new ExerciseInfoRecord();
         }
     }
 

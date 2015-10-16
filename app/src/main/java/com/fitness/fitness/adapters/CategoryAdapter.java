@@ -45,10 +45,36 @@ public class CategoryAdapter extends ArrayAdapter<Integer> {
 
         label.setText(name);
 
-        if (position % 2 == 0)
-            icon.setImageResource(R.drawable.arm_icon);
-        else
-            icon.setImageResource(R.drawable.leg);
+        switch (categories[position])
+        {
+            case R.string.category_base:
+                icon.setImageResource(R.drawable.man_orig);
+                break;
+            case R.string.category_arm:
+                icon.setImageResource(R.drawable.arms);
+                break;
+            case R.string.category_leg:
+                icon.setImageResource(R.drawable.legs);
+                break;
+            case R.string.category_chest:
+                icon.setImageResource(R.drawable.chest);
+                break;
+            case R.string.category_shoulder:
+                icon.setImageResource(R.drawable.shoulders);
+                break;
+            case R.string.category_neck:
+                icon.setImageResource(R.drawable.neck);
+                break;
+            case R.string.category_back:
+                icon.setImageResource(R.drawable.back);
+                break;
+            case R.string.category_press:
+                icon.setImageResource(R.drawable.press);
+                break;
+            default: //all
+                icon.setImageResource(R.drawable.man_orig);
+                break;
+        }
 
         return row;
     }

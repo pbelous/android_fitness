@@ -4,18 +4,53 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_spinner">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date:"
-        android:textSize="25dp"
-        android:id="@+id/textView3" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:padding="5dp"
         android:background="@drawable/round_transparent">
-        </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercise name:"
+        android:textSize="25dp"
+        android:id="@+id/textViewExerciseInfoName" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="->>"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/button_next" />
+
+    </LinearLayout>
+
+    <!--
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:background="@drawable/round_transparent">
+        </LinearLayout> -->
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/textViewExerciseInfoDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:text="fdgfjvgnjrenvgrjenvvtrv
+            vrevrevrevrevre
+            vrevrevrevre
+            vrevrevrvv"/>
+
+    </ScrollView>
   </LinearLayout>

@@ -25,6 +25,9 @@
     <string name="category_leg">Ноги</string>
     <string name="category_chest">Грудь</string>
     <string name="category_shoulder">Плечи</string>
+    <string name="category_back">Спина</string>
+    <string name="category_neck">Шея</string>
+    <string name="category_press">Пресс</string>
 
     <string name="edit">Редактировать</string>
     <string name="cancel">Отмена</string>

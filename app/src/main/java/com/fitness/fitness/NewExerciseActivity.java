@@ -31,7 +31,10 @@ public class NewExerciseActivity extends Activity {
             R.string.category_arm,
             R.string.category_leg,
             R.string.category_chest,
-            R.string.category_shoulder
+            R.string.category_shoulder,
+            R.string.category_back,
+            R.string.category_neck,
+            R.string.category_press,
     };
 
     @Override
