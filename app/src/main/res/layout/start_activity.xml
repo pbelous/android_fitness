@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="#ffd5ff96">
+    android:background="#ffffff">
 
     <Button
         android:layout_width="match_parent"
