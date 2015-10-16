@@ -1,5 +1,7 @@
 package com.fitness.fitness.utils;
 
+import android.util.Log;
+
 import com.fitness.fitness.model.ExerciseInfo;
 import com.fitness.fitness.model.ExerciseInfoRecord;
 
@@ -27,6 +29,24 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
         return info;
     }
 
+    boolean checkHtmlTag(String qName)
+    {
+        if (qName.equalsIgnoreCase("b") ||
+                qName.equalsIgnoreCase("li") ||
+                qName.equalsIgnoreCase("font") ||
+                qName.equalsIgnoreCase("br") ||
+                qName.equalsIgnoreCase("u") ||
+                qName.equalsIgnoreCase("pre") ||
+                qName.equalsIgnoreCase("ul") ||
+                qName.equalsIgnoreCase("i"))
+
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException {
         // reset
@@ -35,9 +55,27 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
             // create a new instance of employee
             tempEmp = new ExerciseInfoRecord();
         }
+
+        if (checkHtmlTag(qName)) {
+            Log.i("--", "START uri="+uri+" localName=" + localName + " qName=" + qName);
+            if (attributes.getLength() > 0)
+                Log.i("--", " attr=Name=" + attributes.getLocalName(0) + " attr=Val=" + attributes.getValue(0));
+
+            if (element) {
+                mStringBuilder.append("<" + qName);
+
+                if (attributes.getLength() > 0)
+                {
+                    mStringBuilder.append(" " + attributes.getQName(0) + "=\"" + attributes.getValue(0) + "\"");
+                }
+                mStringBuilder.append(">");
+            }
+
+            return;
+        }
+
         element = true;
         mStringBuilder.setLength(0);
-
     }
 
     public void characters(char[] ch, int start, int length)
@@ -50,6 +88,15 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
 
     public void endElement(String uri, String localName, String qName)
             throws SAXException {
+
+        if (checkHtmlTag(qName)) {
+            Log.i("--", "END uri="+uri+" localName=" + localName + " qName=" + qName);
+
+            if (element)
+                mStringBuilder.append("</" + qName + ">");
+            return;
+        }
+
         if (qName.equalsIgnoreCase("exercise")) {
             // add it to the list
             info.add(tempEmp);

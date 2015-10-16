@@ -2,6 +2,7 @@ package com.fitness.fitness;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class ExerciseInfoActivity extends Activity {
 
     void updateInfo()
     {
+        if (exerciseInfo == null) return;
+
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final TextView tvExerciseDesc = (TextView)findViewById(R.id.textViewExerciseInfoDescription);
 
@@ -52,7 +55,7 @@ public class ExerciseInfoActivity extends Activity {
         ExerciseInfoRecord record = exerciseInfo.get(pos);
         tvExerciseName.setText(record.name);
 
-        tvExerciseDesc.setText(record.description);
+        tvExerciseDesc.setText(Html.fromHtml(record.description));
     }
 
 

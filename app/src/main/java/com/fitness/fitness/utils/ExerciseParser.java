@@ -33,6 +33,7 @@ public class ExerciseParser {
 
         } catch (Exception ex) {
             Log.d("XML", "SAXXMLParser: parse() failed");
+            Log.d("XML", ex.getMessage());
         }
 
         return info;
