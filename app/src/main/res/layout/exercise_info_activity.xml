@@ -4,27 +4,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_spinner">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="5dp"
-        android:background="@drawable/round_transparent">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="->>"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/button_next" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise name:"
-        android:textSize="25dp"
-        android:id="@+id/textViewExerciseInfoName" />
+        android:textSize="15dp"
+        android:id="@+id/textViewExerciseInfoName"
+        android:textStyle="bold"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="->>"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/button_next" />
 
-    </LinearLayout>
+
 
     <!--
     <LinearLayout

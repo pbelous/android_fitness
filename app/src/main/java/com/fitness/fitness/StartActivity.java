@@ -63,7 +63,8 @@ public class StartActivity extends Activity {
 
     void openScheduleActivity()
     {
-        Intent intent = new Intent(this, ScheduleActivity.class);
+        Intent intent = new Intent(this, ExerciseInfoActivity.class);
+
         startActivity(intent);
     }
 

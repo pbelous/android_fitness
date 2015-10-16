@@ -13,8 +13,11 @@ import java.util.List;
 public class ExerciseParserSaxHandler extends DefaultHandler {
 
     private List<ExerciseInfoRecord> info;
-    private String tempVal;
+    //private String tempVal;
     private ExerciseInfoRecord tempEmp;
+
+    private final StringBuilder mStringBuilder = new StringBuilder();
+    boolean element = false;
 
     public ExerciseParserSaxHandler() {
         info = new ArrayList<ExerciseInfoRecord>();
@@ -27,16 +30,22 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException {
         // reset
-        tempVal = "";
+        //tempVal = "";
         if (qName.equalsIgnoreCase("exercise")) {
             // create a new instance of employee
             tempEmp = new ExerciseInfoRecord();
         }
+        element = true;
+        mStringBuilder.setLength(0);
+
     }
 
     public void characters(char[] ch, int start, int length)
             throws SAXException {
-        tempVal = new String(ch, start, length);
+
+       // tempVal = new String(ch, start, length);
+        if (element)
+            mStringBuilder.append(ch, start, length);
     }
 
     public void endElement(String uri, String localName, String qName)
@@ -44,12 +53,15 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
         if (qName.equalsIgnoreCase("exercise")) {
             // add it to the list
             info.add(tempEmp);
-        } else if (qName.equalsIgnoreCase("name")) {
-            tempEmp.setName(tempVal);
+        } else if (qName.equalsIgnoreCase("title")) {
+            tempEmp.setName(mStringBuilder.toString());
         } else if (qName.equalsIgnoreCase("icon")) {
-            tempEmp.setIcon(tempVal);
+            tempEmp.setIcon(mStringBuilder.toString());
         } else if (qName.equalsIgnoreCase("description")) {
-            tempEmp.setDescription(tempVal);
+            tempEmp.setDescription(mStringBuilder.toString());
         }
+
+        mStringBuilder.setLength(0);
+        element = false;
     }
 }

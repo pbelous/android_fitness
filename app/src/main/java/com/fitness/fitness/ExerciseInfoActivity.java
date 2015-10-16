@@ -29,21 +29,30 @@ public class ExerciseInfoActivity extends Activity {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (exerciseInfo.size() < 1)
-                    return;
-
-                pos++;
-
-                if (pos >= exerciseInfo.size())
-                    pos = 0;
-
-                ExerciseInfoRecord record = exerciseInfo.get(pos);
-                tvExerciseName.setText(record.name);
-
-                tvExerciseDesc.setText(record.description);
-
+                updateInfo();
             }
         });
+
+        updateInfo();
+    }
+
+    void updateInfo()
+    {
+        final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
+        final TextView tvExerciseDesc = (TextView)findViewById(R.id.textViewExerciseInfoDescription);
+
+        if (exerciseInfo.size() < 1)
+            return;
+
+        pos++;
+
+        if (pos >= exerciseInfo.size())
+            pos = 0;
+
+        ExerciseInfoRecord record = exerciseInfo.get(pos);
+        tvExerciseName.setText(record.name);
+
+        tvExerciseDesc.setText(record.description);
     }
 
 
