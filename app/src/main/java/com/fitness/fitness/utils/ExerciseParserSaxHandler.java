@@ -38,6 +38,7 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
                 qName.equalsIgnoreCase("u") ||
                 qName.equalsIgnoreCase("pre") ||
                 qName.equalsIgnoreCase("ul") ||
+                qName.equalsIgnoreCase("html") ||
                 qName.equalsIgnoreCase("i"))
 
         {

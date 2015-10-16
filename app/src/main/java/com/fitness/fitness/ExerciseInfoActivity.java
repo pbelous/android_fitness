@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ public class ExerciseInfoActivity extends Activity {
         exerciseInfo = ExerciseInfo.getExerciseEnfo(this);
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
-        final TextView tvExerciseDesc = (TextView)findViewById(R.id.textViewExerciseInfoDescription);
+        final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
         Button next_button = (Button) findViewById(R.id.button_next);
 
         next_button.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +43,7 @@ public class ExerciseInfoActivity extends Activity {
         if (exerciseInfo == null) return;
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
-        final TextView tvExerciseDesc = (TextView)findViewById(R.id.textViewExerciseInfoDescription);
+        final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
 
         if (exerciseInfo.size() < 1)
             return;
@@ -55,7 +56,9 @@ public class ExerciseInfoActivity extends Activity {
         ExerciseInfoRecord record = exerciseInfo.get(pos);
         tvExerciseName.setText(record.name);
 
-        tvExerciseDesc.setText(Html.fromHtml(record.description));
+
+       // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
+        tvExerciseDesc.loadUrl("file:///android_asset/test.html");
     }
 
 
