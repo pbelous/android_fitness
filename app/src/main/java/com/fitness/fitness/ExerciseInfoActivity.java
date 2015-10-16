@@ -51,14 +51,14 @@ public class ExerciseInfoActivity extends Activity {
         pos++;
 
         if (pos >= exerciseInfo.size())
-            pos = 0;
+            pos = 1;
 
         ExerciseInfoRecord record = exerciseInfo.get(pos);
         tvExerciseName.setText(record.name);
 
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_1.html");
+        tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_" + pos + ".html");
     }
 
 
