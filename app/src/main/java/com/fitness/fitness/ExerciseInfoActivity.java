@@ -47,16 +47,16 @@ public class ExerciseInfoActivity extends Activity {
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
 
-        if (exerciseInfo.size() < 1)
+        if (pos < 0)
             return;
 
         pos++;
 
-        if (pos >= exerciseInfo.size())
-            pos = 0;
+        if (pos >= 8)
+            pos = 1;
 
-        ExerciseInfoRecord record = exerciseInfo.get(pos);
-        tvExerciseName.setText(record.name);
+        //ExerciseInfoRecord record = exerciseInfo.get(pos);
+        tvExerciseName.setText("testing");
 
         tvExerciseDesc.setVerticalScrollBarEnabled(false);
         tvExerciseDesc.setHorizontalScrollBarEnabled(false);
@@ -72,7 +72,7 @@ public class ExerciseInfoActivity extends Activity {
         });
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/test.html");
+        tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_" + pos + ".html");
     }
 
 
