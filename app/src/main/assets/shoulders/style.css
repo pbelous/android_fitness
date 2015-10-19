@@ -1,0 +1,9 @@
+body {
+    background-color: #ffffff;
+}
+
+img {
+    display: inline;
+    height: auto;
+    max-width: 100%;
+}
