@@ -1,6 +1,7 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MotionEvent;
@@ -60,6 +61,8 @@ public class ExerciseInfoActivity extends Activity {
         //ExerciseInfoRecord record = exerciseInfo.get(pos);
         tvExerciseName.setText("testing");
 
+
+
         tvExerciseDesc.setVerticalScrollBarEnabled(false);
         tvExerciseDesc.setHorizontalScrollBarEnabled(false);
 
@@ -79,6 +82,9 @@ public class ExerciseInfoActivity extends Activity {
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
         tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_" + pos + ".html");
+
+        tvExerciseDesc.setBackgroundColor(Color.TRANSPARENT);
+        //tvExerciseDesc.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
 
 
     }
