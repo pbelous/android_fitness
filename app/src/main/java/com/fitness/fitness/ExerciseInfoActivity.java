@@ -8,6 +8,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.fitness.fitness.model.ExerciseInfo;
@@ -46,6 +47,7 @@ public class ExerciseInfoActivity extends Activity {
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
+        final ScrollView svInfo = (ScrollView)findViewById(R.id.info_scroll_view);
 
         if (pos < 0)
             return;
@@ -71,8 +73,14 @@ public class ExerciseInfoActivity extends Activity {
             }
         });
 
+        svInfo.setSmoothScrollingEnabled(false);
+        svInfo.fullScroll(View.FOCUS_UP);
+        svInfo.setSmoothScrollingEnabled(true);
+
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
         tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_" + pos + ".html");
+
+
     }
 
 
