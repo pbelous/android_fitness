@@ -34,29 +34,17 @@
 
 
     <ScrollView
-        android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scrollbars="vertical"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:background="#ffff00">
+        >
 
 
         <WebView
             android:id="@+id/textViewExerciseInfoDescription"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1.0"
+
             android:background="@android:color/transparent"/>
 
-        </LinearLayout>
-
-
-    </ScrollView>
+        </ScrollView>
   </LinearLayout>

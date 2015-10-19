@@ -3,7 +3,9 @@ package com.fitness.fitness;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,6 +58,18 @@ public class ExerciseInfoActivity extends Activity {
         ExerciseInfoRecord record = exerciseInfo.get(pos);
         tvExerciseName.setText(record.name);
 
+        tvExerciseDesc.setVerticalScrollBarEnabled(false);
+        tvExerciseDesc.setHorizontalScrollBarEnabled(false);
+
+       // tvExerciseDesc.getSettings().setLoadWithOverviewMode(true);
+        tvExerciseDesc.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
+        tvExerciseDesc.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+
+                return (event.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
         tvExerciseDesc.loadUrl("file:///android_asset/test.html");
