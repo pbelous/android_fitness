@@ -5,3 +5,7 @@ img {
     height: auto;
     max-width: 90%;
 }
+
+* {
+   -webkit-user-select: none;
+}
