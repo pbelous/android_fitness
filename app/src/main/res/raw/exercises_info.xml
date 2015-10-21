@@ -43,4 +43,135 @@
         <html>shoulders/shoulder_7.html</html>
     </exercise>
 
+    <exercise>
+        <title>Жим штанги лежа</title>
+        <type>chest</type>
+        <html>chest/chest_1.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Отжимания на брусьях</title>
+        <type>chest</type>
+        <html>chest/chest_2.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Разведение рук с гантелями</title>
+        <type>chest</type>
+        <html>chest/chest_3.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Пуловеры с гантелью</title>
+        <type>chest</type>
+        <html>chest/chest_4.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сведение рук в тренажере «Бабочка»</title>
+        <type>chest</type>
+        <html>chest/chest_5.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сведение рук в кроссовере через верхние блоки</title>
+        <type>chest</type>
+        <html>chest/chest_6.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Становая тяга</title>
+        <type>back</type>
+        <html>back/back_1.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Тяга штанги в наклоне</title>
+        <type>back</type>
+        <html>back/back_2.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Тяга гантели в наклоне</title>
+        <type>back</type>
+        <html>back/back_3.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Шраги стоя</title>
+        <type>back</type>
+        <html>back/back_4.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Шраги лежа</title>
+        <type>back</type>
+        <html>back/back_5.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Тяга верхнего блока к груди</title>
+        <type>back</type>
+        <html>back/back_6.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Тяга нижнего блока к животу</title>
+        <type>back</type>
+        <html>back/back_7.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Гиперэкстензии</title>
+        <type>back</type>
+        <html>back/back_8.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сгибание рук с гантелями</title>
+        <type>biceps</type>
+        <html>biceps/biceps_1.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Молотковый подъем гантелей</title>
+        <type>biceps</type>
+        <html>biceps/biceps_2.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Подтягивания</title>
+        <type>biceps</type>
+        <html>biceps/biceps_3.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Подъем штанги на бицепс стоя</title>
+        <type>biceps</type>
+        <html>biceps/biceps_4.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сгибание рук, сидя на наклонной скамье</title>
+        <type>biceps</type>
+        <html>biceps/biceps_5.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Работа со штангой на скамье Скотта</title>
+        <type>biceps</type>
+        <html>biceps/biceps_6.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сгибание рук на тренажере, используя нижний блок</title>
+        <type>biceps</type>
+        <html>biceps/biceps_7.html</html>
+    </exercise>
+
+    <exercise>
+        <title>Сгибание рук в кроссовере</title>
+        <type>biceps</type>
+        <html>biceps/biceps_8.html</html>
+    </exercise>
 </exercises>
