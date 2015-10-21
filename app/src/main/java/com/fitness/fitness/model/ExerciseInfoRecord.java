@@ -4,21 +4,18 @@ package com.fitness.fitness.model;
 public class ExerciseInfoRecord
 {
     public String name;
-    public int icon;
-    public String description;
+    public String type;
+    public String path;
 
     public void setName(String name)
     {
         this.name = name;
     }
 
-    public void setIcon(String icon)
-    {
-        //this.icon = icon;
-    }
+    public void setType(String type) { this.type = type; }
 
-    public void setDescription(String description)
+    public void setPath(String path)
     {
-        this.description = description;
+        this.path = path;
     }
 }

@@ -55,13 +55,11 @@ public class ExerciseInfoActivity extends Activity {
 
         pos++;
 
-        if (pos >= 8)
-            pos = 1;
+        if (pos >= exerciseInfo.size())
+            pos = 0;
 
-        //ExerciseInfoRecord record = exerciseInfo.get(pos);
-        tvExerciseName.setText("testing");
-
-
+        ExerciseInfoRecord record = exerciseInfo.get(pos);
+        tvExerciseName.setText(record.name);
 
         tvExerciseDesc.setVerticalScrollBarEnabled(false);
         tvExerciseDesc.setHorizontalScrollBarEnabled(false);
@@ -81,12 +79,10 @@ public class ExerciseInfoActivity extends Activity {
         svInfo.setSmoothScrollingEnabled(true);
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/shoulders/shoulder_" + pos + ".html");
+        tvExerciseDesc.loadUrl("file:///android_asset/" + record.path);
 
         tvExerciseDesc.setBackgroundColor(Color.TRANSPARENT);
         //tvExerciseDesc.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-
-
     }
 
 

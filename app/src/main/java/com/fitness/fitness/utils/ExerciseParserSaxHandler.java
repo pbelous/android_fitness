@@ -31,6 +31,7 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
 
     boolean checkHtmlTag(String qName)
     {
+        /*
         if (qName.equalsIgnoreCase("b") ||
                 qName.equalsIgnoreCase("li") ||
                 qName.equalsIgnoreCase("font") ||
@@ -44,7 +45,7 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
         {
             return true;
         }
-
+        */
         return false;
     }
 
@@ -103,10 +104,10 @@ public class ExerciseParserSaxHandler extends DefaultHandler {
             info.add(tempEmp);
         } else if (qName.equalsIgnoreCase("title")) {
             tempEmp.setName(mStringBuilder.toString());
-        } else if (qName.equalsIgnoreCase("icon")) {
-            tempEmp.setIcon(mStringBuilder.toString());
-        } else if (qName.equalsIgnoreCase("description")) {
-            tempEmp.setDescription(mStringBuilder.toString());
+        } else if (qName.equalsIgnoreCase("type")) {
+            tempEmp.setType(mStringBuilder.toString());
+        } else if (qName.equalsIgnoreCase("html")) {
+            tempEmp.setPath(mStringBuilder.toString());
         }
 
         mStringBuilder.setLength(0);
