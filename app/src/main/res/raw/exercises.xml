@@ -163,4 +163,41 @@
             <html>biceps/biceps_8.html</html>
         </exercise>
     </category>
+
+    <category type="legs"  name="Ноги" id="5" icon="br_64">
+        <exercise id="501" icon="br_64">
+            <title>Приседания со штангой</title>
+            <html>legs/legs_1.html</html>
+        </exercise>
+
+        <exercise id="502" icon="br_64">
+            <title>Фронтальные приседания</title>
+            <html>legs/legs_2.html</html>
+        </exercise>
+
+        <exercise id="503" icon="br_64">
+            <title>Гакк-приседания</title>
+            <html>legs/legs_3.html</html>
+        </exercise>
+
+        <exercise id="504" icon="br_64">
+            <title>Жим ногами в тренажере</title>
+            <html>legs/legs_4.html</html>
+        </exercise>
+
+        <exercise id="505" icon="br_64">
+            <title>Выпады</title>
+            <html>legs/legs_5.html</html>
+        </exercise>
+
+        <exercise id="506" icon="br_64">
+            <title>Разгибания ног в тренажере</title>
+            <html>legs/legs_6.html</html>
+        </exercise>
+
+        <exercise id="507" icon="br_64">
+            <title>Жим одной ногой</title>
+            <html>legs/legs_7.html</html>
+        </exercise>
+    </category>
 </exercises>
