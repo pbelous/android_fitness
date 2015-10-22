@@ -19,6 +19,8 @@
     <string name="exercises">Упражнения</string>
     <string name="weight">Весы</string>
 
+    <string name="add_weight">Добавить вес</string>
+
     <string name="category_all">Все категории</string>
     <string name="category_base">Базовые упражнения</string>
     <string name="category_arm">Руки</string>
@@ -36,6 +38,10 @@
     <string name="move">Переместить</string>
     <string name="delete">Удалить</string>
 
+    <string name="enter_weight">Введите вес</string>
+    <string name="new_weight">вес (кг):</string>
+
     <string name="select_category">Выберите категорию:</string>
+    <string name="select_ex">Выбрать другое упражнение</string>
     <string name="select_exercise">Выберите упражнение:</string>
 </resources>

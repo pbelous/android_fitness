@@ -4,17 +4,16 @@
     android:layout_height="match_parent"
     android:background="#ffd5ff96">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_weight"
+        android:id="@+id/button_add_weight" />
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/graph" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button" />
 
 
 </LinearLayout>

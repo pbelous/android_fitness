@@ -111,7 +111,7 @@ public class CalendarAdapter extends BaseAdapter {
             setSelected(v, position);
             //previousView = v;
         } else {
-            if (db.checkRecords(dayString.get(position))) {
+            if (db.checkRecords(null, dayString.get(position))) {
                 v.setBackgroundResource(R.drawable.calendar_cel_set);
             } else {
                 v.setBackgroundResource(R.drawable.list_item_background);
@@ -145,15 +145,13 @@ public class CalendarAdapter extends BaseAdapter {
 
     public View setSelected(View view, int position) {
         if (previousView != null) {
-            //TODO: fix crash
             if (previousView.getTag() != null
-                    && db.checkRecords(dayString.get((Integer) previousView.getTag()))
+                    && db.checkRecords(null, dayString.get((Integer) previousView.getTag()))
                     ) {
                 previousView.setBackgroundResource(R.drawable.calendar_cel_set);
             } else {
                 previousView.setBackgroundResource(R.drawable.list_item_background);
             }
-            //previousView.setBackgroundResource(R.drawable.list_item_background);
         }
 
         previousView = view;

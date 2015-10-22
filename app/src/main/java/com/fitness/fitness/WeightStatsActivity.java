@@ -1,42 +1,134 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.method.DigitsKeyListener;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.fitness.fitness.database.Database;
+import com.fitness.fitness.utils.Utils;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class WeightStatsActivity extends Activity {
+
+    GraphView graph = null;
+    Database db = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weight_stat);
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
+        db = new Database(this);
 
-        DataPoint[] data = new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)};
+        db.addWeight("2015-10-10", 10);
+        db.addWeight("2015-10-11", 14);
+        db.addWeight("2015-10-15", 12);
+        db.addWeight("2015-10-20", 100);
 
-        Date date = new Date();
-        DataPoint d = new DataPoint(date, 5);
+        graph = (GraphView) findViewById(R.id.graph);
 
-        Cursor c = null;
+        graph.setTitle("Weight");
 
-      //  LineGraphSeries<DataPoint> series = new LineGraphSeries<>(c);
+        Button add_weight = (Button)findViewById(R.id.button_add_weight);
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data);
-        graph.addSeries(series);
+        add_weight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEnterWeightDialog();
+            }
+        });
 
-        graph.setTitle("title");
+        updateData();
+    }
+
+    private void updateData()
+    {
+        graph.removeAllSeries();
+
+        Cursor c = db.queryAllWeight();
+
+        if (c.moveToFirst())
+        {
+            ArrayList<DataPoint> data = new ArrayList<DataPoint>();
+
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+            do {
+                String date_string = c.getString(c.getColumnIndex("timestamp"));
+                Double weight = c.getDouble(c.getColumnIndex("weight"));
+
+                try {
+                    Date date = format.parse(date_string);
+
+                    DataPoint d = new DataPoint(date, weight);
+
+                    data.add(d);
+
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            } while (c.moveToNext());
+
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data.toArray(new DataPoint[data.size()]));
+            graph.addSeries(series);
+        }
+    }
+
+    private void showEnterWeightDialog()
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle(getResources().getString(R.string.enter_weight));
+        alert.setMessage(getResources().getString(R.string.new_weight));
+
+
+        final EditText input = new EditText(this);
+
+        input.setFilters(new InputFilter[]{
+                // Maximum 3 characters.
+                new InputFilter.LengthFilter(3),
+                // Digits only.
+                DigitsKeyListener.getInstance(),  // Not strictly needed, IMHO.
+        });
+
+// Digits only & use numeric soft-keyboard.
+        input.setKeyListener(DigitsKeyListener.getInstance());
+
+        alert.setView(input);
+        input.setText("0");
+
+        alert.setPositiveButton(getResources().getString(R.string.add),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String weight = input.getText().toString();
+                        db.addWeight(Utils.getCurrentDate(), Integer.parseInt(weight));
+                        updateData();
+                    }
+                });
+
+        alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // do nothing
+            }
+        });
+        alert.show();
     }
 
 }

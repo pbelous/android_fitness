@@ -25,6 +25,9 @@ public class Database {
 
     public void addRecord(Exercise exercise, String timestamp)
     {
+        if (checkRecords(exercise, timestamp))
+            return; //do not add if exist
+
         ContentValues values = new ContentValues();
         values.put("timestamp", timestamp);
         values.put("desc", exercise.name);
@@ -126,12 +129,26 @@ public class Database {
         Log.i("h", "moveeee to" + newdate);
     }
 
-    public boolean checkRecords(String timestamp)
+    public boolean checkRecords(Exercise exercise, String timestamp)
     {
-       Cursor c =  DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp FROM " + DBHelper.SCHEDULE_TABLE_NAME
-               + " WHERE timestamp = '" + timestamp + "'", null);
-        return c.getCount() > 0;
-        //TODO: close cursor
+        Boolean exist = false;
+
+        if (exercise != null)
+        {
+            Cursor c = DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp FROM " + DBHelper.SCHEDULE_TABLE_NAME
+                    + " WHERE timestamp = '" + timestamp + "' and exercise_id = " + exercise.id, null);
+            exist = c.getCount() > 0;
+            c.close();
+        }
+        else
+        {
+            Cursor c = DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp FROM " + DBHelper.SCHEDULE_TABLE_NAME
+                    + " WHERE timestamp = '" + timestamp + "'", null);
+            exist = c.getCount() > 0;
+            c.close();
+        }
+
+        return  exist;
     }
 
     //----------------
