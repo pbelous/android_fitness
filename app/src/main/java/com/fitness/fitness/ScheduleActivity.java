@@ -17,6 +17,8 @@ import android.widget.ListView;
 import com.fitness.fitness.adapters.ScheduleAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.dialogs.DatePickerFragment;
+import com.fitness.fitness.model.Exercise;
+import com.fitness.fitness.model.ExerciseData;
 
 public class ScheduleActivity extends FragmentActivity {
 
@@ -196,9 +198,30 @@ public class ScheduleActivity extends FragmentActivity {
 
     void openNewExerciseActivity()
     {
-        Intent intent = new Intent(this, NewExerciseActivity.class);
-        intent.putExtra("timestamp", date);
-        startActivity(intent);
+        Intent intent = new Intent(this, SelectExerciseActivity.class);
+        //intent.putExtra("timestamp", date);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {return;}
+        int exerciseId = data.getIntExtra("exercise_id", 0);
+
+        if (exerciseId > 0)
+        {
+            addExerciseToDb(exerciseId);
+        }
+    }
+
+    void addExerciseToDb(int exerciseId)
+    {
+        Exercise exercise = ExerciseData.getInstance().getExerciseById(exerciseId);
+        Database db = new Database(this);
+
+        db.addRecord(exercise, date);
+
+       // ExerciseData.getInstance().getCategories()
     }
 
     void openExerciseResultActivity(String timestamp, int exercise_id)

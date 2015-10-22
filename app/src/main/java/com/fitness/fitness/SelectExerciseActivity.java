@@ -1,10 +1,10 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -17,13 +17,10 @@ import com.fitness.fitness.model.ExerciseCategory;
 import com.fitness.fitness.model.ExerciseData;
 import com.fitness.fitness.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
+public class SelectExerciseActivity extends Activity {
 
-public class NewExerciseActivity extends Activity {
-
-    String date = null;
     ImageAdapter gridViewAdapter = null;
     List<Exercise> exercises = null;
 
@@ -33,14 +30,6 @@ public class NewExerciseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_exercize_activity);
-
-        Bundle bundle = getIntent().getExtras();
-
-        if (bundle != null)
-            date = bundle.getString("timestamp");
-
-        if (date == null)
-            date = Utils.getCurrentDate();
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -87,8 +76,7 @@ public class NewExerciseActivity extends Activity {
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
-                    addExerciseToDb(exercises.get(position));
-                    finish();
+                    onExerciseSelected(exercises.get(position));
                 }
             });
         }
@@ -98,15 +86,12 @@ public class NewExerciseActivity extends Activity {
         }
     }
 
-
-    void addExerciseToDb(Exercise exercise)
+    protected void onExerciseSelected(Exercise exercise)
     {
-        Database db = new Database(this);
-
-        db.addRecord(exercise, date);
+        Intent intent = new Intent();
+        intent.putExtra("exercise_id", exercise.id);
+        setResult(1, intent);
+        finish();
     }
 
-
-
 }
-

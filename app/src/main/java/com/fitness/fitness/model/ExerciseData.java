@@ -54,5 +54,17 @@ public class ExerciseData {
         return null;
     }
 
+    public Exercise getExerciseById(int id)
+    {
+        for (ExerciseCategory category : categories)
+        {
+            List<Exercise> exercises = category.getExercises();
+
+            for (Exercise exercise : exercises)
+            if (exercise.id == id)
+                return exercise;
+        }
+        return null;
+    }
 
 }

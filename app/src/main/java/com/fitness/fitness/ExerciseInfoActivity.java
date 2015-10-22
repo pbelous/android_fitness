@@ -1,6 +1,7 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,22 +12,16 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.fitness.fitness.model.Exercise;
 import com.fitness.fitness.model.ExerciseCategory;
 import com.fitness.fitness.model.ExerciseData;
 
 import java.util.List;
 
 public class ExerciseInfoActivity extends Activity {
-
-    private List<ExerciseCategory> categories = null;
-
-    int pos = 0;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise_info_activity);
-
-        categories = ExerciseData.getInstance().getCategories();
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
@@ -35,31 +30,41 @@ public class ExerciseInfoActivity extends Activity {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateInfo();
+                openSelectActivity();
             }
         });
 
-        updateInfo();
+        openSelectActivity();
     }
 
-    void updateInfo()
+    void openSelectActivity()
     {
-        if (categories == null) return;
+        Intent intent = new Intent(this, SelectExerciseActivity.class);
+        //intent.putExtra("timestamp", date);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {return;}
+        int exerciseId = data.getIntExtra("exercise_id", 0);
+
+        if (exerciseId > 0)
+        {
+            updateInfo(exerciseId);
+        } else
+        {
+            openSelectActivity();
+        }
+    }
+
+    void updateInfo(int exerciseId)
+    {
+        if (exerciseId < 1) return;
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
         final ScrollView svInfo = (ScrollView)findViewById(R.id.info_scroll_view);
-
-        if (pos < 0)
-            return;
-
-        pos++;
-
-        if (pos >= categories.size())
-            pos = 0;
-
-        ExerciseCategory cat = categories.get(pos);
-        tvExerciseName.setText(cat.name);
 
         tvExerciseDesc.setVerticalScrollBarEnabled(false);
         tvExerciseDesc.setHorizontalScrollBarEnabled(false);
@@ -78,12 +83,15 @@ public class ExerciseInfoActivity extends Activity {
         svInfo.fullScroll(View.FOCUS_UP);
         svInfo.setSmoothScrollingEnabled(true);
 
+
+
+        Exercise exercise = ExerciseData.getInstance().getExerciseById(exerciseId);
+
+        tvExerciseName.setText(exercise.name);
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/" + cat.getExercises().get(0).path);
+        tvExerciseDesc.loadUrl("file:///android_asset/" + exercise.path);
 
         tvExerciseDesc.setBackgroundColor(Color.TRANSPARENT);
         //tvExerciseDesc.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
     }
-
-
 }
