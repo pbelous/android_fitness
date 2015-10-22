@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercises>
+<!--
+ exercise id:
+  first digit - category (from 1 to max_int)
+  second digit - exercise number (from 0 to 99)
+
+  for example:
+  101  - first category first exercise
+  199  - first category, exercise #99
+  ...
+  1001  - category #10, exercise #1
+ -->
+    <category type="shoulders" name="Плечи" id="1" icon="br_64">
+        <exercise id="101" icon="br_64">
+            <title>Жим штанги стоя</title>
+            <html>shoulders/shoulder_1.html</html>
+        </exercise>
+
+        <exercise id="102" icon="br_64">
+            <title>Жим штанги из-за головы</title>
+            <html>shoulders/shoulder_2.html</html>
+        </exercise>
+
+        <exercise id="103" icon="br_64">
+            <title>Жим гантелей сидя</title>
+            <html>shoulders/shoulder_3.html</html>
+        </exercise>
+
+        <exercise id="104" icon="br_64">
+            <title>Жим Арнольда</title>
+            <html>shoulders/shoulder_4.html</html>
+        </exercise>
+
+        <exercise id="105" icon="br_64">
+            <title>Подъемы гантелей через стороны</title>
+            <html>shoulders/shoulder_5.html</html>
+        </exercise>
+
+        <exercise id="106" icon="br_64">
+            <title>Подъемы гантелей через стороны в наклоне</title>
+            <html>shoulders/shoulder_6.html</html>
+        </exercise>
+
+        <exercise id="107" icon="br_64">
+            <title>Тяга штанги к подбородку</title>
+            <html>shoulders/shoulder_7.html</html>
+        </exercise>
+    </category>
+
+    <category type="chest"  name="Грудь" id="2" icon="br_64">
+        <exercise id="201" icon="br_64">
+            <title>Жим штанги лежа</title>
+            <html>chest/chest_1.html</html>
+        </exercise>
+
+        <exercise id="202" icon="br_64">
+            <title>Отжимания на брусьях</title>
+            <html>chest/chest_2.html</html>
+        </exercise>
+
+        <exercise id="203" icon="br_64">
+            <title>Разведение рук с гантелями</title>
+            <html>chest/chest_3.html</html>
+        </exercise>
+
+        <exercise id="204" icon="br_64">
+            <title>Пуловеры с гантелью</title>
+            <html>chest/chest_4.html</html>
+        </exercise>
+
+        <exercise id="205" icon="br_64">
+            <title>Сведение рук в тренажере «Бабочка»</title>
+            <html>chest/chest_5.html</html>
+        </exercise>
+
+        <exercise id="206" icon="br_64">
+            <title>Сведение рук в кроссовере через верхние блоки</title>
+            <html>chest/chest_6.html</html>
+        </exercise>
+    </category>
+
+    <category type="back"  name="Спина" id="3" icon="br_64">
+        <exercise id="301" icon="br_64">
+            <title>Становая тяга</title>
+            <html>back/back_1.html</html>
+        </exercise>
+
+        <exercise id="302" icon="br_64">
+            <title>Тяга штанги в наклоне</title>
+            <html>back/back_2.html</html>
+        </exercise>
+
+        <exercise id="303" icon="br_64">
+            <title>Тяга гантели в наклоне</title>
+            <html>back/back_3.html</html>
+        </exercise>
+
+        <exercise id="304" icon="br_64">
+            <title>Шраги стоя</title>
+            <html>back/back_4.html</html>
+        </exercise>
+
+        <exercise id="305" icon="br_64">
+            <title>Шраги лежа</title>
+            <html>back/back_5.html</html>
+        </exercise>
+
+        <exercise id="306" icon="br_64">
+            <title>Тяга верхнего блока к груди</title>
+            <html>back/back_6.html</html>
+        </exercise>
+
+        <exercise id="307" icon="br_64">
+            <title>Тяга нижнего блока к животу</title>
+            <html>back/back_7.html</html>
+        </exercise>
+
+        <exercise id="308" icon="br_64">
+            <title>Гиперэкстензии</title>
+            <html>back/back_8.html</html>
+        </exercise>
+    </category>
+
+    <category type="biceps"  name="Бицепс" id="4" icon="br_64">
+        <exercise id="401" icon="br_64">
+            <title>Сгибание рук с гантелями</title>
+            <html>biceps/biceps_1.html</html>
+        </exercise>
+
+        <exercise id="402" icon="br_64">
+            <title>Молотковый подъем гантелей</title>
+            <html>biceps/biceps_2.html</html>
+        </exercise>
+
+        <exercise id="403" icon="br_64">
+            <title>Подтягивания</title>
+            <html>biceps/biceps_3.html</html>
+        </exercise>
+
+        <exercise id="404" icon="br_64">
+            <title>Подъем штанги на бицепс стоя</title>
+            <html>biceps/biceps_4.html</html>
+        </exercise>
+
+        <exercise id="405" icon="br_64">
+            <title>Сгибание рук, сидя на наклонной скамье</title>
+            <html>biceps/biceps_5.html</html>
+        </exercise>
+
+        <exercise id="406" icon="br_64">
+            <title>Работа со штангой на скамье Скотта</title>
+            <html>biceps/biceps_6.html</html>
+        </exercise>
+
+        <exercise id="407" icon="br_64">
+            <title>Сгибание рук на тренажере, используя нижний блок</title>
+            <html>biceps/biceps_7.html</html>
+        </exercise>
+
+        <exercise id="408" icon="br_64">
+            <title>Сгибание рук в кроссовере</title>
+            <html>biceps/biceps_8.html</html>
+        </exercise>
+    </category>
+</exercises>

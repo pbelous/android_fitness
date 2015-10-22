@@ -3,7 +3,6 @@ package com.fitness.fitness;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -12,21 +11,22 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.fitness.fitness.model.ExerciseInfo;
-import com.fitness.fitness.model.ExerciseInfoRecord;
+import com.fitness.fitness.model.ExerciseCategory;
+import com.fitness.fitness.model.ExerciseData;
 
 import java.util.List;
 
 public class ExerciseInfoActivity extends Activity {
 
-    private List<ExerciseInfoRecord> exerciseInfo = null;
+    private List<ExerciseCategory> categories = null;
+
     int pos = 0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise_info_activity);
 
-        exerciseInfo = ExerciseInfo.getExerciseEnfo(this);
+        categories = ExerciseData.getInstance().getCategories();
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
@@ -44,7 +44,7 @@ public class ExerciseInfoActivity extends Activity {
 
     void updateInfo()
     {
-        if (exerciseInfo == null) return;
+        if (categories == null) return;
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
@@ -55,11 +55,11 @@ public class ExerciseInfoActivity extends Activity {
 
         pos++;
 
-        if (pos >= exerciseInfo.size())
+        if (pos >= categories.size())
             pos = 0;
 
-        ExerciseInfoRecord record = exerciseInfo.get(pos);
-        tvExerciseName.setText(record.name);
+        ExerciseCategory cat = categories.get(pos);
+        tvExerciseName.setText(cat.name);
 
         tvExerciseDesc.setVerticalScrollBarEnabled(false);
         tvExerciseDesc.setHorizontalScrollBarEnabled(false);
@@ -79,7 +79,7 @@ public class ExerciseInfoActivity extends Activity {
         svInfo.setSmoothScrollingEnabled(true);
 
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
-        tvExerciseDesc.loadUrl("file:///android_asset/" + record.path);
+        tvExerciseDesc.loadUrl("file:///android_asset/" + cat.getExercises().get(0).path);
 
         tvExerciseDesc.setBackgroundColor(Color.TRANSPARENT);
         //tvExerciseDesc.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);

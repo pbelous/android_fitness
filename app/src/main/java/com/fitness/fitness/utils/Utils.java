@@ -1,5 +1,7 @@
 package com.fitness.fitness.utils;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.util.GregorianCalendar;
@@ -10,9 +12,15 @@ public class Utils {
     {
 
         GregorianCalendar month = (GregorianCalendar) GregorianCalendar.getInstance();
-        String d = android.text.format.DateFormat.format("yyyy-MM-dd", month).toString();
+        return android.text.format.DateFormat.format("yyyy-MM-dd", month).toString();
+    }
 
-        return d;
+    public static int getDrawableIdByName(Context context, String name)
+    {
+        Resources resources = context.getResources();
+        final int resourceId = resources.getIdentifier(name, "drawable",
+                context.getPackageName());
+        return resourceId;
     }
 
 

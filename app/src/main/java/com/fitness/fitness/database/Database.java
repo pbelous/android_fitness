@@ -27,10 +27,10 @@ public class Database {
     {
         ContentValues values = new ContentValues();
         values.put("timestamp", timestamp);
-        values.put("desc", exercise.description);
+        values.put("desc", exercise.name);
         values.put("name", exercise.name);
-        values.put("icon", exercise.resource);
-        values.put("exercise_id", exercise.exercise_id);
+        values.put("icon", 1);
+        values.put("exercise_id", exercise.id);
 
         DBHelper.getWritableDatabase().insert(DBHelper.SCHEDULE_TABLE_NAME, null, values);
     }

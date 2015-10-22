@@ -10,14 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fitness.fitness.R;
+import com.fitness.fitness.model.ExerciseCategory;
+import com.fitness.fitness.utils.Utils;
 
-public class CategoryAdapter extends ArrayAdapter<Integer> {
+import java.util.List;
+
+public class CategoryAdapter extends ArrayAdapter<ExerciseCategory> {
     private Context context;
     private LayoutInflater inflater;
-    Integer[] categories;
+    List<ExerciseCategory> categories;
 
     public CategoryAdapter(Context context, int textViewResourceId,
-                           Integer[] categories) {
+                           List<ExerciseCategory> categories) {
         super(context, textViewResourceId, categories);
         this.context = context;
         inflater = LayoutInflater.from(this.context);
@@ -41,40 +45,10 @@ public class CategoryAdapter extends ArrayAdapter<Integer> {
         TextView label=(TextView)row.findViewById(R.id.category_name);
         ImageView icon=(ImageView)row.findViewById(R.id.category_icon);
 
-        String name = context.getResources().getString(categories[position]);
+        ExerciseCategory category = categories.get(position);
 
-        label.setText(name);
-
-        switch (categories[position])
-        {
-            case R.string.category_base:
-                icon.setImageResource(R.drawable.man_orig);
-                break;
-            case R.string.category_arm:
-                icon.setImageResource(R.drawable.arms);
-                break;
-            case R.string.category_leg:
-                icon.setImageResource(R.drawable.legs);
-                break;
-            case R.string.category_chest:
-                icon.setImageResource(R.drawable.chest);
-                break;
-            case R.string.category_shoulder:
-                icon.setImageResource(R.drawable.shoulders);
-                break;
-            case R.string.category_neck:
-                icon.setImageResource(R.drawable.neck);
-                break;
-            case R.string.category_back:
-                icon.setImageResource(R.drawable.back);
-                break;
-            case R.string.category_press:
-                icon.setImageResource(R.drawable.press);
-                break;
-            default: //all
-                icon.setImageResource(R.drawable.man_orig);
-                break;
-        }
+        label.setText(category.name);
+        icon.setImageResource(Utils.getDrawableIdByName(context, category.icon));
 
         return row;
     }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.fitness.fitness.model.ExerciseData;
 import com.fitness.fitness.utils.Utils;
 
 public class StartActivity extends Activity {
@@ -13,6 +14,9 @@ public class StartActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
+
+        //load all data
+        ExerciseData.getInstance().init(getApplicationContext());
 
         Button calendar_button = (Button)findViewById(R.id.button_calendar);
         Button weight_button = (Button)findViewById(R.id.button_weight);

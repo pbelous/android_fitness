@@ -13,6 +13,8 @@ import com.fitness.fitness.adapters.CategoryAdapter;
 import com.fitness.fitness.adapters.ImageAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.Exercise;
+import com.fitness.fitness.model.ExerciseCategory;
+import com.fitness.fitness.model.ExerciseData;
 import com.fitness.fitness.utils.Utils;
 
 import java.util.ArrayList;
@@ -23,19 +25,9 @@ public class NewExerciseActivity extends Activity {
 
     String date = null;
     ImageAdapter gridViewAdapter = null;
-    Exercise[] exercises = null;
+    List<Exercise> exercises = null;
 
-    Integer[] categories = new Integer[] {
-            R.string.category_all,
-            R.string.category_base,
-            R.string.category_arm,
-            R.string.category_leg,
-            R.string.category_chest,
-            R.string.category_shoulder,
-            R.string.category_back,
-            R.string.category_neck,
-            R.string.category_press,
-    };
+    List<ExerciseCategory> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +58,8 @@ public class NewExerciseActivity extends Activity {
             }
         });
 
+        categories = ExerciseData.getInstance().getCategories();
+
         CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_spinner_item, categories);
 
         spinner.setAdapter(adapter);
@@ -82,29 +76,8 @@ public class NewExerciseActivity extends Activity {
 
     void updateExercisesList(Integer position)
     {
-        Integer category = categories[position];
-
-        switch (category)
-        {
-            case R.string.category_base:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_BASE);
-                break;
-            case R.string.category_arm:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_ARM);
-                break;
-            case R.string.category_leg:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_LEG);
-                break;
-            case R.string.category_chest:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_CHEST);
-                break;
-            case R.string.category_shoulder:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_SHOULDER);
-                break;
-            default:
-                exercises =  Exercise.getExercises(this, Exercise.EXER_TYPE_ALL);
-                break;
-        }
+        ExerciseCategory category = categories.get(position);
+        exercises = category.getExercises();
 
         if (gridViewAdapter == null)
         {
@@ -114,7 +87,7 @@ public class NewExerciseActivity extends Activity {
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
-                    addExerciseToDb(exercises[position]);
+                    addExerciseToDb(exercises.get(position));
                     finish();
                 }
             });
