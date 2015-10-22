@@ -133,7 +133,7 @@
             <html>biceps/biceps_2.html</html>
         </exercise>
 
-        <exercise id="403" icon="br_64">
+        <exercise id="403" icon="pull_64">
             <title>Подтягивания</title>
             <html>biceps/biceps_3.html</html>
         </exercise>
@@ -180,7 +180,7 @@
             <html>legs/legs_3.html</html>
         </exercise>
 
-        <exercise id="504" icon="br_64">
+        <exercise id="504" icon="push_64">
             <title>Жим ногами в тренажере</title>
             <html>legs/legs_4.html</html>
         </exercise>
