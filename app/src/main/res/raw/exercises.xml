@@ -11,7 +11,7 @@
   ...
   1001  - category #10, exercise #1
  -->
-    <category type="shoulders" name="Плечи" id="1" icon="br_64">
+    <category type="shoulders" name="Плечи" id="1" icon="shoulders">
         <exercise id="101" icon="br_64">
             <title>Жим штанги стоя</title>
             <html>shoulders/shoulder_1.html</html>
@@ -48,8 +48,8 @@
         </exercise>
     </category>
 
-    <category type="chest"  name="Грудь" id="2" icon="br_64">
-        <exercise id="201" icon="br_64">
+    <category type="chest"  name="Грудь" id="2" icon="chest">
+        <exercise id="201" icon="bench_press_64">
             <title>Жим штанги лежа</title>
             <html>chest/chest_1.html</html>
         </exercise>
@@ -80,7 +80,7 @@
         </exercise>
     </category>
 
-    <category type="back"  name="Спина" id="3" icon="br_64">
+    <category type="back"  name="Спина" id="3" icon="back">
         <exercise id="301" icon="br_64">
             <title>Становая тяга</title>
             <html>back/back_1.html</html>
@@ -122,7 +122,7 @@
         </exercise>
     </category>
 
-    <category type="biceps"  name="Бицепс" id="4" icon="br_64">
+    <category type="biceps"  name="Бицепс" id="4" icon="arms">
         <exercise id="401" icon="br_64">
             <title>Сгибание рук с гантелями</title>
             <html>biceps/biceps_1.html</html>
@@ -164,8 +164,8 @@
         </exercise>
     </category>
 
-    <category type="legs"  name="Ноги" id="5" icon="br_64">
-        <exercise id="501" icon="br_64">
+    <category type="legs"  name="Ноги" id="5" icon="legs">
+        <exercise id="501" icon="squat_64">
             <title>Приседания со штангой</title>
             <html>legs/legs_1.html</html>
         </exercise>
