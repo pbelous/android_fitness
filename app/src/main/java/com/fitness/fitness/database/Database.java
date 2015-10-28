@@ -10,8 +10,6 @@ import com.fitness.fitness.R;
 import com.fitness.fitness.model.Exercise;
 import com.fitness.fitness.model.ExerciseResult;
 
-/* TODO: Add some comments */
-
 public class Database {
     private  final Context context;
     private DBHelper DBHelper;

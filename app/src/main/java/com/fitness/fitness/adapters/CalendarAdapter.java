@@ -31,28 +31,30 @@ public class CalendarAdapter extends BaseAdapter {
     int maxWeeknumber;
     int maxP;
     int calMaxP;
-    int lastWeekDay;
-    int leftDays;
+    //int lastWeekDay;
+    //int leftDays;
     int mnthlength;
     String itemvalue, curentDateString;
     DateFormat df;
 
-    private ArrayList<String> items;
     public static List<String> dayString;
     private View previousView;
     Database db;
 
-    public CalendarAdapter(Context c, GregorianCalendar monthCalendar, Database db) {
+    int calendar_height = 0;
+
+    public CalendarAdapter(Context c, GregorianCalendar monthCalendar, Database db, int calendar_height) {
         CalendarAdapter.dayString = new ArrayList<String>();
         month = monthCalendar;
         selectedDate = (GregorianCalendar) monthCalendar.clone();
         mContext = c;
         this.db = db;
         month.set(GregorianCalendar.DAY_OF_MONTH, 1);
-        this.items = new ArrayList<String>();
+
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         curentDateString = df.format(selectedDate.getTime());
         refreshDays();
+        this.calendar_height = calendar_height;
     }
 
     public void setItems(ArrayList<String> items) {
@@ -61,7 +63,14 @@ public class CalendarAdapter extends BaseAdapter {
                 items.set(i, "0" + items.get(i));
             }
         }
-        this.items = items;
+    }
+
+    public void setGridViewHeight(int height)
+    {
+        if (this.calendar_height != height) {
+            this.calendar_height = height;
+            notifyDataSetInvalidated();
+        }
     }
 
     public int getCount() {
@@ -80,13 +89,16 @@ public class CalendarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         TextView dayView;
+
         if (convertView == null) { // if it's not recycled, initialize some
             // attributes
             LayoutInflater vi = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.calendar_item, null);
-
         }
+
+        v.setMinimumHeight(calendar_height / 5);
+
         dayView = (TextView) v.findViewById(R.id.date);
         // separates daystring into parts.
         String[] separatedTime = dayString.get(position).split("-");
@@ -133,21 +145,12 @@ public class CalendarAdapter extends BaseAdapter {
             monthStr = "0" + monthStr;
         }
 
-        // show icon if date is not empty and it exists in the items array
-        ImageView iw = (ImageView) v.findViewById(R.id.date_icon);
-        if (date.length() > 0 && items != null && items.contains(date)) {
-            iw.setVisibility(View.VISIBLE);
-        } else {
-            iw.setVisibility(View.INVISIBLE);
-        }
         return v;
     }
 
     public View setSelected(View view, int position) {
         if (previousView != null) {
-            if (previousView.getTag() != null
-                    && db.checkRecords(null, dayString.get((Integer) previousView.getTag()))
-                    ) {
+            if (previousView.getTag() != null && db.checkRecords(null, dayString.get((Integer) previousView.getTag()))) {
                 previousView.setBackgroundResource(R.drawable.calendar_cel_set);
             } else {
                 previousView.setBackgroundResource(R.drawable.list_item_background);
@@ -162,7 +165,8 @@ public class CalendarAdapter extends BaseAdapter {
 
     public void refreshDays() {
         // clear items
-        items.clear();
+       // items.clear();
+
         dayString.clear();
         pmonth = (GregorianCalendar) month.clone();
         // month start day. ie; sun, mon, etc

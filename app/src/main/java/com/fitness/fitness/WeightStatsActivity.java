@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.utils.Utils;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -68,6 +69,12 @@ public class WeightStatsActivity extends Activity {
 
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
+            Date dataStart = null;
+            Date dataEnd = null;
+
+            Double minWeight = -1.;
+            Double maxWeight = 0.;
+
             do {
                 String date_string = c.getString(c.getColumnIndex("timestamp"));
                 Double weight = c.getDouble(c.getColumnIndex("weight"));
@@ -79,6 +86,14 @@ public class WeightStatsActivity extends Activity {
 
                     data.add(d);
 
+                    if (dataStart == null)
+                        dataStart = date;
+
+                    dataEnd = date;
+
+                    if (minWeight == -1 || minWeight > weight) minWeight = weight;
+                    if (maxWeight < weight) maxWeight = weight;
+
                 } catch (Exception e)
                 {
                     e.printStackTrace();
@@ -88,6 +103,22 @@ public class WeightStatsActivity extends Activity {
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data.toArray(new DataPoint[data.size()]));
             graph.addSeries(series);
+
+            graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+            graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+
+            //graph.getGridLabelRenderer().
+
+            graph.getViewport().setMinX(dataStart.getTime()+100000000*5);
+            graph.getViewport().setMaxX(dataEnd.getTime()-100000000*5);
+
+            graph.getViewport().setMinY(minWeight);
+            graph.getViewport().setMaxY(maxWeight);
+
+            graph.getViewport().setXAxisBoundsManual(true);
+
+            graph.getViewport().setScrollable(true);
+            graph.getViewport().setScalable(true);
         }
     }
 

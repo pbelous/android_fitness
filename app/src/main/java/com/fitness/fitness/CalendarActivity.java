@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import com.fitness.fitness.adapters.CalendarAdapter;
 import com.fitness.fitness.database.Database;
+import com.fitness.fitness.utils.Utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,7 +32,7 @@ public class CalendarActivity extends Activity {
 
     public CalendarAdapter adapter;
     public Handler handler;
-    public ArrayList<String> items;
+    //public ArrayList<String> items;
 
     Database db;
 
@@ -42,10 +46,18 @@ public class CalendarActivity extends Activity {
         month = (GregorianCalendar) GregorianCalendar.getInstance();
         itemmonth = (GregorianCalendar) month.clone();
 
-        items = new ArrayList<String>();
-        adapter = new CalendarAdapter(this, month, db);
+        //items = new ArrayList<String>();
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int height = metrics.heightPixels;
+
+        adapter = new CalendarAdapter(this, month, db, height);
+
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+
         gridview.setAdapter(adapter);
 
         handler = new Handler();
@@ -81,11 +93,9 @@ public class CalendarActivity extends Activity {
                                     int position, long id) {
 
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
-                String selectedGridDate = CalendarAdapter.dayString
-                        .get(position);
+                String selectedGridDate = CalendarAdapter.dayString.get(position);
                 String[] separatedTime = selectedGridDate.split("-");
-                String gridvalueString = separatedTime[2].replaceFirst("^0*",
-                        "");// taking last part of date. ie; 2 from 2012-12-02.
+                String gridvalueString = separatedTime[2].replaceFirst("^0*", "");// taking last part of date. ie; 2 from 2012-12-02.
                 int gridvalue = Integer.parseInt(gridvalueString);
                 // navigate to next or previous month on clicking offdays.
                 if ((gridvalue > 10) && (position < 8)) {
@@ -97,7 +107,25 @@ public class CalendarActivity extends Activity {
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v, position);
 
-                openScheduleActivity(selectedGridDate);
+                if (Utils.compareDate(selectedGridDate, Utils.getCurrentDate()) >= 0) {
+                    openScheduleActivity(selectedGridDate);
+                }
+                else
+                {
+                    showToast("old date selected");
+                }
+            }
+        });
+
+
+        final ViewTreeObserver vto = gridview.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+                if (gridview.getHeight() > 10) { // because it may be called before the view is measured and you will still get 0
+                    adapter.setGridViewHeight(gridview.getHeight());
+                }
             }
         });
     }
@@ -109,7 +137,6 @@ public class CalendarActivity extends Activity {
 
         startActivity(intent);
     }
-
 
     protected void setNextMonth() {
         if (month.get(Calendar.MONTH) == month.getActualMaximum(Calendar.MONTH)) {
@@ -139,7 +166,6 @@ public class CalendarActivity extends Activity {
 
     protected void showToast(String string) {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-
     }
 
     public void refreshCalendar() {
@@ -147,7 +173,7 @@ public class CalendarActivity extends Activity {
 
         adapter.refreshDays();
         adapter.notifyDataSetChanged();
-        handler.post(calendarUpdater); // generate some calendar items
+    //    handler.post(calendarUpdater); // generate some calendar items
 
         title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
     }
@@ -156,23 +182,6 @@ public class CalendarActivity extends Activity {
 
         @Override
         public void run() {
-            items.clear();
-
-            // Print dates of the current week
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String itemvalue;
-            for (int i = 0; i < 7; i++) {
-                itemvalue = df.format(itemmonth.getTime());
-                itemmonth.add(Calendar.DATE, 1);
-                items.add("2012-09-12");
-                items.add("2012-10-07");
-                items.add("2012-10-15");
-                items.add("2012-10-20");
-                items.add("2012-11-30");
-                items.add("2012-11-28");
-            }
-
-            adapter.setItems(items);
             adapter.notifyDataSetChanged();
         }
     };
