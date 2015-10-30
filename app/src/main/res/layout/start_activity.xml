@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/exercises"
                 android:id="@+id/button_schedule"
-                android:drawableTop="@drawable/schedule_button"
+                android:drawableTop="@drawable/exercise_button"
                 android:layout_marginRight="5dp"/>
 
             <Button
