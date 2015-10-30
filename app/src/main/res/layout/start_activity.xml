@@ -29,14 +29,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/train"
                 android:id="@+id/button_schedule_today"
-                android:drawableTop="@drawable/schedule_button"
+                android:drawableTop="@drawable/test4"
                 android:layout_marginRight="5dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/calendar"
-                android:drawableTop="@drawable/calendar_button"
+                android:drawableTop="@drawable/test3"
                 android:id="@+id/button_calendar"
                 android:layout_marginLeft="5dp"/>
 
