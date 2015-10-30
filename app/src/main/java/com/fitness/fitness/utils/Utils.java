@@ -1,9 +1,14 @@
 package com.fitness.fitness.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.fitness.fitness.R;
+
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -44,5 +49,56 @@ public class Utils {
         return 0;
     }
 
+    private static int themeId;
+    public final static int THEME_1 = 0;
+    public final static int THEME_2 = 1;
+    public final static int THEME_3 = 2;
 
+
+    public static void changeToTheme(Activity activity, int theme)
+    {
+
+        if (themeId != getCurrentThemeId(theme)) {
+            themeId = getCurrentThemeId(theme);
+
+            activity.finish();
+            activity.startActivity(new Intent(activity, activity.getClass()));
+        }
+    }
+
+    private static int getCurrentThemeId(int theme)
+    {
+        switch (theme)
+        {
+            case THEME_1:
+                return R.style.activity_style1;
+            case THEME_2:
+                return R.style.activity_style2;
+            case THEME_3:
+            default:
+                return R.style.activity_style3;
+        }
+    }
+
+    public static int getCurrentTheme()
+    {
+        return themeId;
+    }
+
+    public static void onActivityCreateSetTheme(Activity activity)
+    {
+        activity.setTheme(themeId);
+    }
+
+    public static int getThemeId(Context ctx) {
+        try {
+            Class<?> wrapper = Context.class;
+            Method method = wrapper.getMethod("getThemeResId");
+            method.setAccessible(true);
+            return (Integer) method.invoke(ctx);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -32,6 +32,7 @@ public class WeightStatsActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.weight_stat);
 
         db = new Database(this);

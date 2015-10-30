@@ -15,12 +15,14 @@ import android.widget.TextView;
 import com.fitness.fitness.model.Exercise;
 import com.fitness.fitness.model.ExerciseCategory;
 import com.fitness.fitness.model.ExerciseData;
+import com.fitness.fitness.utils.Utils;
 
 import java.util.List;
 
 public class ExerciseInfoActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.exercise_info_activity);
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);

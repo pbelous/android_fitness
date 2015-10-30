@@ -5,8 +5,16 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="activity_style">
-    <item name="android:background">#fafaf7</item>
+    <style name="activity_style1" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@color/color1</item>
+    </style>
+
+    <style name="activity_style2" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/color2</item>
+    </style>
+
+    <style name="activity_style3" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/color3</item>
     </style>
 
     <style name="spinner_style">

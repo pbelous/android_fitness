@@ -23,6 +23,7 @@ public class ExerciseResultActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.exersize_result_activity);
 
         db = new Database(this);

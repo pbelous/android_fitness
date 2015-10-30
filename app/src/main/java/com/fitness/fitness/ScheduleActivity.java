@@ -19,6 +19,7 @@ import com.fitness.fitness.database.Database;
 import com.fitness.fitness.dialogs.DatePickerFragment;
 import com.fitness.fitness.model.Exercise;
 import com.fitness.fitness.model.ExerciseData;
+import com.fitness.fitness.utils.Utils;
 
 public class ScheduleActivity extends FragmentActivity {
 
@@ -33,6 +34,7 @@ public class ScheduleActivity extends FragmentActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.schedule_activity);
 
         db = new Database(this);
