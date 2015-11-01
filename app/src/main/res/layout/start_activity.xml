@@ -27,7 +27,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/button"
                 android:text="@string/train"
                 android:id="@+id/button_schedule_today"
                 android:drawableTop="@drawable/train_button"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:text="@string/calendar"
-                android:drawableTop="@drawable/calendar_button1"
+                android:drawableTop="@drawable/calendar_button"
                 android:id="@+id/button_calendar"
                 android:layout_marginLeft="20dp"/>
 
