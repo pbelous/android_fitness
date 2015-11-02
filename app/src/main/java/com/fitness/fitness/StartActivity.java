@@ -19,8 +19,8 @@ public class StartActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getCurrentTheme());
-        Utils.onActivityCreateSetTheme(this);
+        //setTheme(Utils.getCurrentTheme());
+        //Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.start_activity);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
