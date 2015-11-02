@@ -2,6 +2,7 @@ package com.fitness.fitness;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,14 +30,15 @@ public class StartActivity extends AppCompatActivity {
         //load all data
         ExerciseData.getInstance().init(getApplicationContext());
 
-        Button calendar_button = (Button)findViewById(R.id.button_calendar);
-        Button weight_button = (Button)findViewById(R.id.button_weight);
-        Button schedule_button = (Button)findViewById(R.id.button_schedule);
-        Button traing_button = (Button)findViewById(R.id.button_schedule_today);
+        final Button calendar_button = (Button) findViewById(R.id.button_calendar);
+        final Button weight_button = (Button) findViewById(R.id.button_weight);
+        final Button schedule_button = (Button) findViewById(R.id.button_schedule);
+        final Button train_button = (Button) findViewById(R.id.button_schedule_today);
 
         weight_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                weight_button.setBackgroundColor(Color.GRAY);
                 openWeightStatsActivity();
             }
         });
@@ -44,6 +46,7 @@ public class StartActivity extends AppCompatActivity {
         calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calendar_button.setBackgroundColor(Color.GRAY);
                 openCalendarActivity();
             }
         });
@@ -51,27 +54,37 @@ public class StartActivity extends AppCompatActivity {
         schedule_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                schedule_button.setBackgroundColor(Color.GRAY);
                 openScheduleActivity();
             }
         });
 
-        traing_button.setOnClickListener(new View.OnClickListener() {
+        train_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                train_button.setBackgroundColor(Color.GRAY);
                 openTrainActivity();
             }
         });
-
     }
-
     protected void onResume()
     {
+        Button calendar_button = (Button) findViewById(R.id.button_calendar);
+        Button weight_button = (Button) findViewById(R.id.button_weight);
+        Button schedule_button = (Button) findViewById(R.id.button_schedule);
+        final Button train_button = (Button) findViewById(R.id.button_schedule_today);
+
         if (Utils.getThemeId(this) != Utils.getCurrentTheme())
         {
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             finish();
         }
+
+        calendar_button.setBackgroundColor(Color.TRANSPARENT);
+        weight_button.setBackgroundColor(Color.TRANSPARENT);
+        schedule_button.setBackgroundColor(Color.TRANSPARENT);
+        train_button.setBackgroundColor(Color.TRANSPARENT);
 
         super.onResume();
     }

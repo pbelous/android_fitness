@@ -16,54 +16,59 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="2dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button"
                 android:text="@string/train"
                 android:id="@+id/button_schedule_today"
-                android:drawableTop="@drawable/test4"
-                android:layout_marginRight="5dp"/>
+                android:drawableTop="@drawable/train_button"
+                android:layout_marginRight="20dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:text="@string/calendar"
-                android:drawableTop="@drawable/test3"
+                android:drawableTop="@drawable/calendar_button"
                 android:id="@+id/button_calendar"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:text="@string/exercises"
                 android:id="@+id/button_schedule"
-                android:drawableTop="@drawable/exercise_button"
-                android:layout_marginRight="5dp"/>
+                android:drawableTop="@drawable/exercises_button"
+                android:layout_marginRight="20dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:text="@string/weight"
-                android:drawableTop="@drawable/chart_button"
+                android:drawableTop="@drawable/scales1"
                 android:id="@+id/button_weight"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
