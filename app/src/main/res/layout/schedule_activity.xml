@@ -2,15 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
-    style="@style/activity_style1">
-
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/SchedulelistView"
-        android:layout_weight="1"/>
+    style="@style/activity_style1"
+    android:padding="10dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
@@ -18,16 +11,19 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add"
+            android:text="@string/add_excercise"
+            android:background="@drawable/button_round_corner_selector"
             android:id="@+id/button_add_excersize" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OK"
-            android:id="@+id/button_new_cancel"/>
-
     </LinearLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/SchedulelistView"/>
+
+
 </LinearLayout>

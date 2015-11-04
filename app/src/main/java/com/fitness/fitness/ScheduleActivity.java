@@ -77,15 +77,7 @@ public class ScheduleActivity extends FragmentActivity {
 
         registerForContextMenu(listview);
 
-        Button cancel = (Button)findViewById(R.id.button_new_cancel);
         Button add_exercise = (Button)findViewById(R.id.button_add_excersize);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         add_exercise.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,8 +1,10 @@
 package com.fitness.fitness;
 
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -59,10 +61,20 @@ public class SelectExerciseActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(Activity.RESULT_CANCELED);
                 finish();
             }
         });
     }
+/*
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    } */
 
     void updateExercisesList(Integer position)
     {
@@ -91,7 +103,7 @@ public class SelectExerciseActivity extends Activity {
     {
         Intent intent = new Intent();
         intent.putExtra("exercise_id", exercise.id);
-        setResult(1, intent);
+        setResult(Activity.RESULT_OK, intent);
         finish();
     }
 

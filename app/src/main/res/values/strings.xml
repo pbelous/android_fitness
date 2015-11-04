@@ -17,7 +17,7 @@
     <string name="train">Тренировка</string>
     <string name="calendar">Календарь</string>
     <string name="exercises">Упражнения</string>
-    <string name="weight">Весы</string>
+    <string name="weights">Весы</string>
 
     <string name="add_weight">Добавить вес</string>
 
@@ -40,6 +40,21 @@
 
     <string name="enter_weight">Введите вес</string>
     <string name="new_weight">вес (кг):</string>
+
+    <string name="reps">Количество повторений</string>
+    <string name="reps_short">Повторений</string>
+    <string name="weight">вес (кг)</string>
+    <string name="date">Дата</string>
+
+    <string name="enter_result">Новый подход</string>
+    <string name="new_result">Введите результаты подхода:</string>
+    <string name="add_result">Добавить подход</string>
+
+    <string name="today_info_title">Упражнения на сегодня:</string>
+
+    <string name="today_info_no_exercises">На сегодня упражнений нет.\nНажмите чтобы добавить.</string>
+
+    <string name="add_excercise">Добавить упражнение</string>
 
     <string name="select_category">Выберите категорию:</string>
     <string name="select_ex">Выбрать другое упражнение</string>

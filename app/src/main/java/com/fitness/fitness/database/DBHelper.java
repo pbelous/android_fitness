@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    final static int DB_VER = 10;
+    final static int DB_VER = 11;
     final static String DB_NAME = "todo.db";
 
     //---------------------------------------------------
@@ -35,7 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "( _id INTEGER PRIMARY KEY , "+
             " timestamp TEXT , "+
             " exercise_id INTEGER , "+
-            " result TEXT)";
+            " result_weight REAL , "+
+            " result_reps INTEGER)";
     final String DROP_RESULTS_TABLE = "DROP TABLE IF EXISTS "+RESULTS_TABLE_NAME;
 
     //----------------------------------------------------

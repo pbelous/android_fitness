@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class ExerciseResult {
     public int exercise_id = -1;
     public String date = "";
-    public String resultsString = "";
+    public double resultWeight;
+    public double resultReps;
 
     public class ExerciseRep
     {
@@ -16,17 +17,19 @@ public class ExerciseResult {
 
     public ArrayList<ExerciseRep> reps = new ArrayList<ExerciseRep>();
 
-    public ExerciseResult(int exercise_id, String date, String resultsString)
+    public ExerciseResult(int exercise_id, String date, double resultWeight, int resultReps)
     {
         this.exercise_id = exercise_id;
         this.date = date;
-        this.resultsString = resultsString;
+        this.resultWeight = resultWeight;
+        this.resultReps = resultReps;
 
-        reloadResultsFromString(resultsString);
+        //reloadResultsFromString(resultsString);
     }
 
     //format: 20 5\n10 5
 
+    /*
     void reloadResultsFromString(String resultsString)
     {
         reps.clear();
@@ -50,4 +53,5 @@ public class ExerciseResult {
         resultsString  = resultsString + "\n" + weight + " " + reps;
         reloadResultsFromString(resultsString);
     }
+    */
 }

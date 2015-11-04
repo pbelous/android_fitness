@@ -38,13 +38,13 @@ public class Database {
 
     public Cursor queryResultsWithDate(String timestamp, int exercise_id)
     {
-        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result_weight, result_reps, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
                 + " WHERE timestamp = '" + timestamp + "' and exercise_id = " + exercise_id, null);
     }
 
     public Cursor queryResults(int exercise_id)
     {
-        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
+        return DBHelper.getReadableDatabase().rawQuery("SELECT _id, timestamp, result_weight, result_reps, exercise_id FROM " + DBHelper.RESULTS_TABLE_NAME
                 + " WHERE exercise_id = " + exercise_id, null);
     }
 
@@ -58,7 +58,9 @@ public class Database {
         {
             c.moveToFirst();
 
-            result = new ExerciseResult(exercise_id, timestamp, c.getString(c.getColumnIndex("result")));
+            result = new ExerciseResult(exercise_id, timestamp,
+                    c.getDouble(c.getColumnIndex("result_weight")),
+                    c.getInt(c.getColumnIndex("result_reps")));
         }
         return result;
     }
@@ -78,7 +80,9 @@ public class Database {
         {
             c.moveToFirst();
 
-            result = new ExerciseResult(exercise_id, c.getString(c.getColumnIndex("timestamp")), c.getString(c.getColumnIndex("result")));
+            result = new ExerciseResult(exercise_id, c.getString(c.getColumnIndex("timestamp")),
+                    c.getDouble(c.getColumnIndex("result_weight")),
+                    c.getInt(c.getColumnIndex("result_reps")));
         }
         return result;
     }
@@ -88,14 +92,15 @@ public class Database {
         ContentValues values = new ContentValues();
         values.put("timestamp", result.date);
         values.put("exercise_id", result.exercise_id);
-        values.put("result", result.resultsString);
+        values.put("result_weight", result.resultWeight);
+        values.put("result_reps", result.resultReps);
 
-        int rows = DBHelper.getWritableDatabase().update(DBHelper.RESULTS_TABLE_NAME, values, "timestamp=? and exercise_id=?", new String[] {result.date, String.valueOf(result.exercise_id)} );
+       // int rows = DBHelper.getWritableDatabase().update(DBHelper.RESULTS_TABLE_NAME, values, "timestamp=? and exercise_id=?", new String[] {result.date, String.valueOf(result.exercise_id)} );
 
-        if (rows < 1)
-        {
+      //  if (rows < 1)
+      //  {
             DBHelper.getWritableDatabase().insert(DBHelper.RESULTS_TABLE_NAME, null, values);
-        }
+      //  }
     }
 
     public Cursor queryWithDate(String timestamp)

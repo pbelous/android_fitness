@@ -3,23 +3,29 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/activity_style1"
-    android:layout_weight="1">
+    android:padding="10dp">
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add"
+        android:text="@string/add_result"
         android:id="@+id/button_add" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/listViewExersizeResult" />
-
-    <Button
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/button_ok" />
+        android:layout_height="fill_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/table_layout_results"
+
+        android:stretchColumns="1"
+        android:shrinkColumns="1"/>
+
+    </ScrollView>
+
+
+
+
 </LinearLayout>

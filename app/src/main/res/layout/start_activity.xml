@@ -14,62 +14,98 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="8dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button"
+                android:padding="4dp"
+                android:background="@drawable/button_round_corner_selector"
                 android:text="@string/train"
                 android:id="@+id/button_schedule_today"
                 android:drawableTop="@drawable/train_button"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="15dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:background="@drawable/button_round_corner_selector"
                 android:text="@string/calendar"
                 android:drawableTop="@drawable/calendar_button"
                 android:id="@+id/button_calendar"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="15dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="8dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:background="@drawable/button_round_corner_selector"
                 android:text="@string/exercises"
                 android:id="@+id/button_schedule"
                 android:drawableTop="@drawable/exercises_button"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="15dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="@string/weight"
+                android:padding="4dp"
+                android:background="@drawable/button_round_corner_selector"
+                android:text="@string/weights"
                 android:drawableTop="@drawable/scales1"
                 android:id="@+id/button_weight"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="15dp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/info_block_round_corner">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="@string/today_info_title"
+                android:id="@+id/today_button"/>
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_today_info"
+                android:textSize="16dp"
+                android:text="---"
+                android:visibility="visible"/>
+
+        </ScrollView>
+            </LinearLayout>
     </LinearLayout>
 </LinearLayout>

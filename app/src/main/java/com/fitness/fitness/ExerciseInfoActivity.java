@@ -20,6 +20,8 @@ import com.fitness.fitness.utils.Utils;
 import java.util.List;
 
 public class ExerciseInfoActivity extends Activity {
+    int excersize_id = -1;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Utils.onActivityCreateSetTheme(this);
@@ -48,21 +50,25 @@ public class ExerciseInfoActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) {return;}
-        int exerciseId = data.getIntExtra("exercise_id", 0);
+        if (resultCode == Activity.RESULT_CANCELED)
+        {
+            if (excersize_id < 1) finish();
+        }
 
-        if (exerciseId > 0)
+        if (data == null)
         {
-            updateInfo(exerciseId);
-        } else
+            if (excersize_id < 1) finish();
+        }
+        else
         {
-            openSelectActivity();
+            excersize_id = data.getIntExtra("exercise_id", 0);
+            updateInfo();
         }
     }
 
-    void updateInfo(int exerciseId)
+    void updateInfo()
     {
-        if (exerciseId < 1) return;
+        if (excersize_id < 1) return;
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);
         final WebView tvExerciseDesc = (WebView)findViewById(R.id.textViewExerciseInfoDescription);
@@ -87,7 +93,7 @@ public class ExerciseInfoActivity extends Activity {
 
 
 
-        Exercise exercise = ExerciseData.getInstance().getExerciseById(exerciseId);
+        Exercise exercise = ExerciseData.getInstance().getExerciseById(excersize_id);
 
         tvExerciseName.setText(exercise.name);
        // tvExerciseDesc.loadDataWithBaseURL(null, html,"text/html", "utf-8", null);
