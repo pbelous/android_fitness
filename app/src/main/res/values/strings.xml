@@ -52,7 +52,7 @@
 
     <string name="today_info_title">Упражнения на сегодня:</string>
 
-    <string name="today_info_no_exercises">На сегодня упражнений нет.\nНажмите чтобы добавить.</string>
+    <string name="today_info_no_exercises">На сегодня упражнений нет</string>
 
     <string name="add_excercise">Добавить упражнение</string>
 

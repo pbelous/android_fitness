@@ -43,7 +43,6 @@ public class StartActivity extends AppCompatActivity {
         weight_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weight_button.setBackgroundColor(Color.GRAY);
                 openWeightStatsActivity();
             }
         });
@@ -51,7 +50,6 @@ public class StartActivity extends AppCompatActivity {
         calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendar_button.setBackgroundColor(Color.GRAY);
                 openCalendarActivity();
             }
         });
@@ -59,7 +57,6 @@ public class StartActivity extends AppCompatActivity {
         schedule_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                schedule_button.setBackgroundColor(Color.GRAY);
                 openScheduleActivity();
             }
         });
@@ -67,7 +64,6 @@ public class StartActivity extends AppCompatActivity {
         train_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                train_button.setBackgroundColor(Color.GRAY);
                 openTrainActivity();
             }
         });
@@ -102,12 +98,9 @@ public class StartActivity extends AppCompatActivity {
         if (!c.moveToFirst())
         {
             today_info.setText(getResources().getString(R.string.today_info_no_exercises));
-            //today_button.setVisibility(View.VISIBLE);
         }
         else
         {
-            //today_button.setVisibility(View.GONE);
-            //today_info.setVisibility(View.VISIBLE);
             StringBuilder sb = new StringBuilder();
 
             do {
