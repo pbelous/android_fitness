@@ -40,6 +40,7 @@ public class SelectExerciseActivity extends Activity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Utils.lastSelectedCategory = position;
                 updateExercisesList(position);
             }
 
@@ -64,6 +65,8 @@ public class SelectExerciseActivity extends Activity {
                 finish();
             }
         });
+
+        spinner.setSelection(Utils.lastSelectedCategory);
     }
 /*
     @Override

@@ -37,6 +37,7 @@
     <string name="copy">Копировать</string>
     <string name="move">Переместить</string>
     <string name="delete">Удалить</string>
+    <string name="show_info">Показать информацию</string>
 
     <string name="enter_weight">Введите вес</string>
     <string name="new_weight">вес (кг):</string>

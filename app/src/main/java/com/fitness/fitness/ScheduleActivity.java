@@ -27,9 +27,10 @@ public class ScheduleActivity extends FragmentActivity {
     String date = null;
     ScheduleAdapter adapter = null;
 
-    private static final int MENU_ID_MOVE=Menu.FIRST+1;
-    private static final int MENU_ID_COPY=Menu.FIRST+2;
-    private static final int MENU_ID_DELETE=Menu.FIRST+3;
+    private static final int MENU_ID_INFO=Menu.FIRST+1;
+    private static final int MENU_ID_MOVE=Menu.FIRST+2;
+    private static final int MENU_ID_COPY=Menu.FIRST+3;
+    private static final int MENU_ID_DELETE=Menu.FIRST+4;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class ScheduleActivity extends FragmentActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v.getId() == R.id.SchedulelistView) {
+            menu.add(0, MENU_ID_INFO, 0, getResources().getString(R.string.show_info));
             menu.add(0, MENU_ID_COPY, 0, getResources().getString(R.string.copy));
             menu.add(0, MENU_ID_MOVE, 0, getResources().getString(R.string.move));
             menu.add(0, MENU_ID_DELETE, 0, getResources().getString(R.string.delete));
@@ -124,6 +126,9 @@ public class ScheduleActivity extends FragmentActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int position = info.position;
 
+        Cursor cursor = (Cursor) adapter.getItem(position);
+        int exercise_id = cursor.getInt(cursor.getColumnIndex("exercise_id"));
+
         if (item.getItemId() == MENU_ID_DELETE)
         {
             deleteSchedule(position);
@@ -141,6 +146,10 @@ public class ScheduleActivity extends FragmentActivity {
             });
 
             newFragment.show(getSupportFragmentManager(), "datePicker");
+        }
+        else if (item.getItemId() == MENU_ID_INFO)
+        {
+            openInfoActivity(exercise_id);
         }
 
         return super.onContextItemSelected(item);
@@ -187,6 +196,13 @@ public class ScheduleActivity extends FragmentActivity {
 
         adapter.swapCursor(c);
         adapter.notifyDataSetChanged();
+    }
+
+    void openInfoActivity(int exerciseId)
+    {
+        Intent intent = new Intent(this, ExerciseInfoActivity.class);
+        intent.putExtra("exerciseId", exerciseId);
+        startActivity(intent);
     }
 
     void openNewExerciseActivity()

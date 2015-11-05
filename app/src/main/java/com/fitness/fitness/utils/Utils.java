@@ -15,6 +15,8 @@ import java.util.GregorianCalendar;
 
 public class Utils {
 
+    public static int lastSelectedCategory = 0;
+
     public static String getCurrentDate()
     {
 

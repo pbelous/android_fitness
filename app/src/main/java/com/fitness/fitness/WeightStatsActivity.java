@@ -124,7 +124,6 @@ public class WeightStatsActivity extends Activity {
             LineChartData data = new LineChartData();
             data.setLines(lines);
             data.setValueLabelsTextColor(Color.BLACK);
-            //data.col
 
             Axis axisX = new Axis(axisValues).setHasTiltedLabels(true).setHasLines(true).setName(getResources().getString(R.string.date));
 

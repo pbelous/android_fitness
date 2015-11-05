@@ -37,7 +37,26 @@ public class ExerciseInfoActivity extends Activity {
             }
         });
 
-        openSelectActivity();
+        Intent intent = getIntent();
+
+        if (intent != null)
+        {
+            Bundle bundle = intent.getExtras();
+
+            if (bundle != null)
+            {
+                excersize_id = bundle.getInt("exerciseId");
+            }
+        }
+
+        if (excersize_id == -1)
+        {
+            openSelectActivity();
+        }
+        else
+        {
+            updateInfo();
+        }
     }
 
     void openSelectActivity()
