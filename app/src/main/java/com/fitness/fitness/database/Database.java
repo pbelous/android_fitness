@@ -30,7 +30,7 @@ public class Database {
         values.put("timestamp", timestamp);
         values.put("desc", exercise.name);
         values.put("name", exercise.name);
-        values.put("icon", 1);
+        values.put("icon", exercise.icon);
         values.put("exercise_id", exercise.id);
 
         DBHelper.getWritableDatabase().insert(DBHelper.SCHEDULE_TABLE_NAME, null, values);

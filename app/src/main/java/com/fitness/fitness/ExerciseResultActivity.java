@@ -3,7 +3,6 @@ package com.fitness.fitness;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,17 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.fitness.fitness.adapters.ExerciseResultAdapter;
-import com.fitness.fitness.adapters.ScheduleAdapter;
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.model.ExerciseResult;
 import com.fitness.fitness.utils.Utils;
-import com.jjoe64.graphview.GraphView;
 
 public class ExerciseResultActivity extends Activity {
 
@@ -36,7 +31,6 @@ public class ExerciseResultActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.exersize_result_activity);
 
         db = new Database(this);
@@ -97,8 +91,6 @@ public class ExerciseResultActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
 
-//Create two columns to add as table data
-        // Create a TextView to add date
         TextView label1 = new TextView(this);
         label1.setId(201 + startId);
         label1.setText(text1);

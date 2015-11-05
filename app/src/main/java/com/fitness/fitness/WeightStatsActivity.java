@@ -4,35 +4,46 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ZoomControls;
 
 import com.fitness.fitness.database.Database;
 import com.fitness.fitness.utils.Utils;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.view.LineChartView;
 
 
 public class WeightStatsActivity extends Activity {
 
-    GraphView graph = null;
+    LineChartView chart = null;
     Database db = null;
+
+    float currentZoomLevel = 0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.weight_stat);
 
         db = new Database(this);
@@ -42,9 +53,13 @@ public class WeightStatsActivity extends Activity {
         db.addWeight("2015-10-15", 12);
         db.addWeight("2015-10-20", 100);
 
-        graph = (GraphView) findViewById(R.id.graph);
+        chart = (LineChartView) findViewById(R.id.graph);
 
-        graph.setTitle("Weight");
+        chart.setInteractive(true);
+        chart.setZoomType(ZoomType.HORIZONTAL);
+        chart.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
+        chart.setScrollEnabled(true);
+
 
         Button add_weight = (Button)findViewById(R.id.button_add_weight);
 
@@ -60,21 +75,16 @@ public class WeightStatsActivity extends Activity {
 
     private void updateData()
     {
-        graph.removeAllSeries();
-
         Cursor c = db.queryAllWeight();
+
 
         if (c.moveToFirst())
         {
-            ArrayList<DataPoint> data = new ArrayList<DataPoint>();
+            List<PointValue> values = new ArrayList<PointValue>();
+            List<AxisValue> axisValues = new ArrayList<AxisValue>();
 
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-            Date dataStart = null;
-            Date dataEnd = null;
-
-            Double minWeight = -1.;
-            Double maxWeight = 0.;
 
             do {
                 String date_string = c.getString(c.getColumnIndex("timestamp"));
@@ -83,18 +93,11 @@ public class WeightStatsActivity extends Activity {
                 try {
                     Date date = format.parse(date_string);
 
-                    DataPoint d = new DataPoint(date, weight);
+                    PointValue d = new PointValue(date.getTime(), weight.floatValue());
+                    AxisValue v = new AxisValue(date.getTime(), date_string.toCharArray());
 
-                    data.add(d);
-
-                    if (dataStart == null)
-                        dataStart = date;
-
-                    dataEnd = date;
-
-                    if (minWeight == -1 || minWeight > weight) minWeight = weight;
-                    if (maxWeight < weight) maxWeight = weight;
-
+                    axisValues.add(v);
+                    values.add(d);
                 } catch (Exception e)
                 {
                     e.printStackTrace();
@@ -102,24 +105,35 @@ public class WeightStatsActivity extends Activity {
 
             } while (c.moveToNext());
 
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data.toArray(new DataPoint[data.size()]));
-            graph.addSeries(series);
 
-            graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-            graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+            Axis axisY = new Axis().setHasLines(true);
+            axisY.setName(getResources().getString(R.string.weight));
 
-            //graph.getGridLabelRenderer().
+            Line line = new Line(values).setColor(Color.BLUE);
 
-            graph.getViewport().setMinX(dataStart.getTime()+100000000*5);
-            graph.getViewport().setMaxX(dataEnd.getTime()-100000000*5);
+            line.setHasLabels(true);
+            line.setHasLines(true);
 
-            graph.getViewport().setMinY(minWeight);
-            graph.getViewport().setMaxY(maxWeight);
+            line.setPointRadius(1);
 
-            graph.getViewport().setXAxisBoundsManual(true);
+            List<Line> lines = new ArrayList<Line>();
+            lines.add(line);
 
-            graph.getViewport().setScrollable(true);
-            graph.getViewport().setScalable(true);
+            LineChartData data = new LineChartData();
+            data.setLines(lines);
+
+            Axis axisX = new Axis(axisValues).setHasTiltedLabels(true).setHasLines(true).setName(getResources().getString(R.string.date));
+
+            axisX.setMaxLabelChars(12);
+            axisX.setAutoGenerated(false);
+
+            data.setAxisXBottom(axisX);
+            data.setValueLabelTextSize(8);
+            data.setAxisYLeft(axisY);
+
+            chart.setLineChartData(data);
+
+            chart.setHorizontalScrollBarEnabled(true);
         }
     }
 
@@ -137,10 +151,33 @@ public class WeightStatsActivity extends Activity {
                 // Maximum 3 characters.
                 new InputFilter.LengthFilter(3),
                 // Digits only.
-                DigitsKeyListener.getInstance(),  // Not strictly needed, IMHO.
-        });
+                new DigitsKeyListener(Boolean.FALSE, Boolean.TRUE) {
+                    int beforeDecimal = 5, afterDecimal = 2;
 
-// Digits only & use numeric soft-keyboard.
+                    @Override
+                    public CharSequence filter(CharSequence source, int start, int end,
+                                               Spanned dest, int dstart, int dend) {
+                        String temp = input.getText() + source.toString();
+
+                        if (temp.equals(".")) {
+                            return "0.";
+                        }
+                        else if (temp.toString().indexOf(".") == -1) {
+                            // no decimal point placed yet
+                            if (temp.length() > beforeDecimal) {
+                                return "";
+                            }
+                        } else {
+                            temp = temp.substring(temp.indexOf(".") + 1);
+                            if (temp.length() > afterDecimal) {
+                                return "";
+                            }
+                        }
+
+                        return super.filter(source, start, end, dest, dstart, dend);
+                    }},});
+
+
         input.setKeyListener(DigitsKeyListener.getInstance());
 
         alert.setView(input);
@@ -150,7 +187,7 @@ public class WeightStatsActivity extends Activity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String weight = input.getText().toString();
-                        db.addWeight(Utils.getCurrentDate(), Integer.parseInt(weight));
+                        db.addWeight(Utils.getCurrentDate(), Float.parseFloat(weight));
                         updateData();
                     }
                 });

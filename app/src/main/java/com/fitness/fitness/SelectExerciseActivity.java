@@ -31,7 +31,6 @@ public class SelectExerciseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.new_exercize_activity);
 
         // Spinner element

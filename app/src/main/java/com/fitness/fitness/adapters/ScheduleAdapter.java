@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fitness.fitness.R;
+import com.fitness.fitness.utils.Utils;
 
 public class ScheduleAdapter extends CursorAdapter {
     public ScheduleAdapter(Context context, Cursor cursor) {
@@ -32,18 +33,13 @@ public class ScheduleAdapter extends CursorAdapter {
         String desc = cursor.getString(cursor.getColumnIndexOrThrow("desc"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 
-        int res = R.drawable.calendar_cel_set;
+        String icon_name = cursor.getString(cursor.getColumnIndexOrThrow("icon"));
 
-        try {
-            res = cursor.getInt(cursor.getColumnIndexOrThrow("icon"));
-        }
-        catch (Exception e)
-        {
-        }
+        int icon = Utils.getDrawableIdByName(context, icon_name);
 
         // Populate fields with extracted properties
         tvName.setText(name);
         tvDesc.setText(desc);
-        ivIcon.setImageResource(res);
+        ivIcon.setImageResource(icon);
     }
 }

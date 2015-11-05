@@ -13,7 +13,6 @@ public class SettingsActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.settings_activity);
 
         Button apply_button = (Button)findViewById(R.id.settings_button_apply_theme);
@@ -27,20 +26,12 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                int checkedId = group.getCheckedRadioButtonId();
 
-                int button = 0;
-
-                if (checkedId == R.id.radio1) button = 1;
-                if (checkedId == R.id.radio2) button = 2;
-
-                changeTheme(button);
             }
         });
     }
 
     private void changeTheme(int theme)
     {
-        Utils.changeToTheme(this, theme);
     }
 }

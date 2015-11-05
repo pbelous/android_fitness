@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ZoomControls;
 
 import com.fitness.fitness.adapters.CalendarAdapter;
 import com.fitness.fitness.database.Database;
@@ -39,15 +40,10 @@ public class CalendarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
-        Locale.setDefault(Locale.US);
-
         db = new Database(this);
 
         month = (GregorianCalendar) GregorianCalendar.getInstance();
         itemmonth = (GregorianCalendar) month.clone();
-
-        //items = new ArrayList<String>();
-
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -109,9 +105,7 @@ public class CalendarActivity extends Activity {
 
                 if (Utils.compareDate(selectedGridDate, Utils.getCurrentDate()) >= 0) {
                     openScheduleActivity(selectedGridDate);
-                }
-                else
-                {
+                } else {
                     showToast("old date selected");
                 }
             }
@@ -128,6 +122,8 @@ public class CalendarActivity extends Activity {
                 }
             }
         });
+
+
     }
 
     void openScheduleActivity(String date){

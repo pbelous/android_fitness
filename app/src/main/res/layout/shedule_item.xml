@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/gradient_spinner"
     android:orientation="horizontal"
-    android:padding="5dip" >
-    <!-- ListRow Left side Thumbnail image -->
-    <LinearLayout
-        android:id="@+id/thumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="5dip"
-        android:padding="3dip" >
+    android:padding="5dip"
+    android:layout_weight="1">
+
         <ImageView
             android:id="@+id/list_image"
-            android:contentDescription="@string/app_name"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:src="@drawable/calendar_cel_set" />
-    </LinearLayout>
-    <!-- Rightend Arrow -->
-    <ImageView
-        android:id="@+id/imageView1"
-        android:contentDescription="@string/app_name"
-        android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip"
+            android:padding="3dip"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/arrow_right" />
-    <!-- City-->
+        android:layout_weight="1"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="75dip"
-        android:layout_centerVertical="true"
-        android:paddingBottom ="10dip"
-        android:text="city"
+        android:text="--"
         android:textColor="#040404"
         android:textSize="18dip"
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:typeface="sans"/>
     <!-- Weather Information-->
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewName"
-        android:layout_alignLeft="@+id/textViewName"
         android:paddingTop="5dip"
-        android:layout_centerHorizontal="true"
-        android:text="cond"
+        android:text="--"
         android:textColor="#343434"
         android:textSize="15dip" />
-</RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:contentDescription="@string/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/arrow_right" />
+</LinearLayout>

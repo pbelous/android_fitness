@@ -24,7 +24,6 @@ public class ExerciseInfoActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.exercise_info_activity);
 
         final TextView tvExerciseName = (TextView)findViewById(R.id.textViewExerciseInfoName);

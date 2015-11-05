@@ -23,10 +23,7 @@ public class StartActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getCurrentTheme());
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.start_activity);
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -120,13 +117,6 @@ public class StartActivity extends AppCompatActivity {
         Button weight_button = (Button) findViewById(R.id.button_weight);
         Button schedule_button = (Button) findViewById(R.id.button_schedule);
         final Button train_button = (Button) findViewById(R.id.button_schedule_today);
-
-        if (Utils.getThemeId(this) != Utils.getCurrentTheme())
-        {
-            Intent intent = new Intent(this, StartActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         updateTodayInfo();
 
