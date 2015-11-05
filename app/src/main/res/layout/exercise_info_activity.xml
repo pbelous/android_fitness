@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/activity_style1">
+    style="@style/activity_style1"
+    android:padding="10dp">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/select_ex"
-        android:layout_marginLeft="30dp"
+        android:background="@drawable/button_round_corner_selector"
         android:id="@+id/button_next" />
 
     <TextView
@@ -18,18 +19,6 @@
         android:textSize="15dp"
         android:id="@+id/textViewExerciseInfoName"
         android:textStyle="bold"/>
-
-
-
-
-    <!--
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="5dp"
-        android:background="@drawable/round_transparent">
-        </LinearLayout> -->
 
 
 
