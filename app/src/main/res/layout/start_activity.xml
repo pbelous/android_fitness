@@ -62,7 +62,7 @@
                 android:background="@drawable/button_round_corner_selector"
                 android:text="@string/exercises"
                 android:id="@+id/button_schedule"
-                android:drawableTop="@drawable/exercises_button"
+                android:drawableTop="@drawable/train_button1"
                 android:layout_marginRight="15dp"/>
 
             <Button
@@ -71,7 +71,7 @@
                 android:padding="4dp"
                 android:background="@drawable/button_round_corner_selector"
                 android:text="@string/weights"
-                android:drawableTop="@drawable/scales1"
+                android:drawableTop="@drawable/scale_button2"
                 android:id="@+id/button_weight"
                 android:layout_marginLeft="15dp"/>
 

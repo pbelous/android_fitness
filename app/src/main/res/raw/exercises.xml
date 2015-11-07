@@ -200,7 +200,7 @@
         <html>legs/legs_7.html</html>
     </exercise>
     </category>
-    <category type="forearm"  name="Предплечья" id="6" icon="arms">
+    <category type="forearm"  name="Предплечье" id="6" icon="arms">
         <exercise id="601" icon="squat_64">
             <title>Сгибание рук в запястьях</title>
             <html>forearm/forearm_1.html</html>
