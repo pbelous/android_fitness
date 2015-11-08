@@ -9,13 +9,13 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:elevation="4dp"
+        android:background="@drawable/bar"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal">
 
@@ -87,8 +87,9 @@
             android:background="@drawable/info_block_round_corner">
 
             <Button
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bar2"
                 android:textSize="14dp"
                 android:text="@string/today_info_title"
                 android:id="@+id/today_button"/>
