@@ -205,5 +205,59 @@
             <title>Сгибание рук в запястьях</title>
             <html>forearm/forearm_1.html</html>
         </exercise>
-        </category>
+    </category>
+    <category type="press"  name="Пресс" id="7" icon="arms">
+        <exercise id="701" icon="squat_64">
+            <title>Подъём ног в висе</title>
+            <html>press/press_1.html</html>
+        </exercise>
+        <exercise id="702" icon="squat_64">
+            <title>Подъём ног с упором на локти</title>
+            <html>press/press_2.html</html>
+        </exercise>
+        <exercise id="703" icon="squat_64">
+            <title>Подъём ног лёжа на скамье/на наклонной скамье</title>
+            <html>press/press_3.html</html>
+        </exercise>
+        <exercise id="704" icon="squat_64">
+            <title>Скручивания</title>
+            <html>press/press_4.html</html>
+        </exercise>
+        <exercise id="705" icon="squat_64">
+            <title>Скручивания на скамье с наклоном вниз</title>
+            <html>press/press_5.html</html>
+        </exercise>
+        <exercise id="706" icon="squat_64">
+            <title>Упражнение "Молитва"</title>
+            <html>press/press_6.html</html>
+        </exercise>
+        <exercise id="707" icon="squat_64">
+            <title>Скручивания в тренажёре</title>
+            <html>press/press_7.html</html>
+        </exercise>
+        <exercise id="708" icon="squat_64">
+            <title>Наклоны в стороны с гантелей</title>
+            <html>press/press_8.html</html>
+        </exercise>
+        <exercise id="709" icon="squat_64">
+            <title>Наклоны в стороны на блоке</title>
+            <html>press/press_9.html</html>
+        </exercise>
+        <exercise id="710" icon="squat_64">
+            <title>Скручивания с поворотом тела</title>
+            <html>press/press_10.html</html>
+        </exercise>
+        <exercise id="711" icon="squat_64">
+            <title>Планка</title>
+            <html>press/press_11.html</html>
+        </exercise>
+        <exercise id="712" icon="squat_64">
+            <title>Боковая планка</title>
+            <html>press/press_12.html</html>
+        </exercise>
+        <exercise id="713" icon="squat_64">
+            <title>Дровосек</title>
+            <html>press/press_13.html</html>
+        </exercise>
+    </category>
 </exercises>
